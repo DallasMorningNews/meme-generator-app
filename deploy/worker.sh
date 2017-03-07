@@ -17,8 +17,6 @@ cd $APP_DIR
 git pull
 npm install --production
 
-cd $REGISTRY_DIR
-git pull
 sudo service nginx restart
 
 # Restart app
