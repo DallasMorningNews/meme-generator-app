@@ -14,7 +14,7 @@ module.exports = (app) => {
   const s3 = new AWS.S3({ params: { Bucket: 'dmnmeme' } });
 
   // UPLOAD FILES
-  app.post('/builder/upload/s3', (req, res) => {
+  app.post('/builder/upload', (req, res) => {
     console.log('Uploading meme to S3...');
 
     // Payload object
