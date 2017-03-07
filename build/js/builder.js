@@ -5,7 +5,7 @@ $(document).ready(() => {
 
   // Build thumbs
   for (const image of imagesArray) {
-    const thisLine = `<img class="thumb" data-image="${image}" src="../images/base-images/${image}.jpg" />`;
+    const thisLine = `<img class="thumb" data-image="${image}" src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${image}.jpg" />`;
     $('#thumbsBox').append(thisLine);
   }
   const randomImage = _.random(imagesArray.length - 1);
