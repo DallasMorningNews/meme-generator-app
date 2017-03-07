@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(app) {
     // Meta data
     var meta = require('../meta.json');

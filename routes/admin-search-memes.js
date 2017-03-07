@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app) => {
   app
   // Get first meme from a builder
@@ -67,55 +69,7 @@ module.exports = (app) => {
         (err, results) => {
           if (err) { console.log(err); }
           res.send(results);
-        }
-      )
-    })
-};
-
-      // req.models.memes.find().where('bottom LIKE ?', [`%${searchString}%`]).run((err, results) => {
-      //   if (err) { console.log(err); }
-      //   res.send(results);
-      // });
-
-/*
-
-// you could do this without even fetching it, look at Chaining section above
-Person.get(1, function (err, John) {
-    John.remove(function (err) {
-        console.log("removed!");
+        } // Ignore comma-dangle error
+      );
     });
-});
-
-*/
-
-
-  //   .get('/admin/search/memes/:filter', (req, res) => {
-  //   const instruction = req.params.filter; // The route
-  //   const filter = req.body; // The payload
-  //   console.log(`Searching memes with ${filter}`);
-  //   switch(filter){
-  //     case 'filter-builder':{
-  //       // req.models.memes.find() ... run((err, results) => {
-  //       //   res.send(results);
-  //       // });
-  //     }
-  //     case 'filter-date':{
-  //       // req.models.memes.find() ... run((err, results) => {
-  //       //   res.send(results);
-  //       // });
-  //     }
-  //     case 'filter-tags':{
-  //       // req.models.memes.find() ... run((err, results) => {
-  //       //   res.send(results);
-  //       // });
-  //     }
-  //     case 'filter-word':{
-  //       // req.models.memes.find().where('topline LIKE ?', [`%${filter.word}%`]).run((err, results) => {
-  //       //   res.send(results);
-  //       // });
-  //     }
-  //     default:
-  //       res.send('error searching memes switch');
-  //       console.log('There was an error in the switch');
-  //   }
-  // });
+};

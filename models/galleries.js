@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (db, cb) {
   db.define('galleries', {
     id: { type: 'serial', key: true },

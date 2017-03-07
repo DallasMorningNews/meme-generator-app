@@ -5,7 +5,7 @@ set -e
 
 APP_DIR=/var/www/meme-generator
 REGISTRY_DIR=/etc/nginx/sites-enabled
-GIT_URL=git://github.com/DallasMorningNews/meme-generator
+GIT_URL=git://github.com/DallasMorningNews/meme-generator-app
 RESTART_ARGS=
 
 

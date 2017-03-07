@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (app) {
   const AWS = require('aws-sdk');
   const multer = require('multer');

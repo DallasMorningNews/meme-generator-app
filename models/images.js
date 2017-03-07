@@ -1,3 +1,5 @@
+
+'use strict';
 module.exports = (db, cb) => {
   db.define('images', {
     id: { type: 'serial', key: true },

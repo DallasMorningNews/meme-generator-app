@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app) => {
   // Get all builders for moderate memes admin
   app.get('/admin/search/builders', (req, res) => {

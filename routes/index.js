@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app) => {
   // Auth routes
   require('./auth-home')(app);

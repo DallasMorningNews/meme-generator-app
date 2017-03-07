@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app) => {
   // Meta data
   const meta = require('../meta.json');

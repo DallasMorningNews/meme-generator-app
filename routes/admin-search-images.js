@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app) => {
   // SEARCH TAGS FOR BASE IMAGES
   app.post('/admin/search', (req, res) => {

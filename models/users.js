@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (db, cb) => {
   db.define('users', {
     key: { type: 'serial', key: true },

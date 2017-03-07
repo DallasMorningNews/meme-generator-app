@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const aws = require('aws-sdk');
 const nunjucks = require('nunjucks');
@@ -43,11 +45,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /*-------------------------------------------------------
-    AWS S3
+    DATABASE INIT
 -------------------------------------------------------*/
-
-
-
 
 // App connects to mysql database using credentials set in .env file
 // process.env object is created by the dotenv load line above
