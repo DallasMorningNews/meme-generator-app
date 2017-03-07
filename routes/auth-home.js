@@ -40,5 +40,6 @@ module.exports = function(app) {
     passport.authenticate('google', { failureRedirect: '/login' }),
     function (req, res) {
       res.redirect('/meme-generator/admin/');
+
+      // Test for github};
     });
-};
