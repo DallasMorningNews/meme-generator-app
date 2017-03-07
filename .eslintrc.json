@@ -1,0 +1,22 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jquery": true
+  },
+  "root": true,
+  "extends": "airbnb",
+  "rules": {
+    "func-names": 0,
+    "no-console": 0,
+    "max-len": 0,
+    "radix": 0,
+    "no-unused-vars": 1,
+    "no-var": 1,
+    "no-use-before-define": 1,
+    "no-multiple-empty-lines": 0,
+    "global-require": 1,
+    "no-restricted-syntax": ["off", "FunctionExpression", "ForOfStatement"]
+  }
+}

@@ -1,0 +1,208 @@
+{%extends 'base.html'%} {%import 'partials/img.html' as img%} {%block custom_meta%}
+<meta content="{{keywords|join(',')}}" name="keywords" />
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta content="{{shareText}}" name="description" />
+<title>{{pageTitle}}</title>
+<meta property="og:url" content="{{url}}" />
+<meta property="og:title" content="{{shareTitle}}" />
+<meta property="og:description" content="{{shareText}}" name="description" />
+<meta property="og:image" content="{{imgURL}}" />
+<meta property="og:image:height" content="{{imgHeight}}" />
+<meta property="og:image:width" content="{{imgWidth}}" />
+<meta property="og:type" content="article" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{sectionTwitter}}" />
+<meta name="twitter:creator" content="@{{authorTwitter}}" />
+
+<meta name="liveFyreID" content="{{id}}" />
+
+<meta name="parsely-page" id='parsely-page' content='{"title": "{{shareTitle}}", "link": "{{url}}", "image_url": "{{imgURL}}", "type": "post", "post_id": "{{id}}", "pub_date": "{{publishDate}}", "section": "{{section}}", "author": ["{{authors}}"], "tags": ["{{keywords|join('
+				"," ')|safe}}"]}' />
+
+<meta property="og:keywords" content="{{keywords|join(',')}}" />
+
+<meta name="news_keywords" content="{{keywords|join(',')}}" />
+
+<script type="text/javascript" src="../js/admin.js"></script>
+
+{%endblock%} {%block custom_head%} {%endblock%} {%block ad%}
+<script type="text/javascript" src="http://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript">
+	DFP_networkId = "11222444";
+	var DFPSlotSizes = [];
+	if (jQuery(window).width() < 768) {
+		var DFP_sitepage = "m.DMN/interactives";
+		DFPSlotSizes = [320, 50]
+		var adSlot0 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionTop");
+		adSlot0.setTargeting("position", "x01");
+		adSlot0.addService(googletag.pubads());
+
+		/*
+		var adSlot1 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionMiddle");
+		adSlot1.setTargeting("position", "x02");
+		adSlot1.addService(googletag.pubads());
+		*/
+
+		/*
+		var adSlot2 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionBottom");
+		adSlot2.setTargeting("position", "x03");
+		adSlot2.addService(googletag.pubads());
+		*/
+	} else {
+		var DFP_sitepage = "DMN/interactives";
+		DFPSlotSizes = [728, 90]
+		var adSlot0 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionTop");
+		adSlot0.setTargeting("position", "Top");
+		adSlot0.addService(googletag.pubads());
+
+		/*
+		var adSlot1 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionMiddle");
+		adSlot1.setTargeting("position", "Top");
+		adSlot1.addService(googletag.pubads());
+		*/
+
+		/*
+		var adSlot2 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionBottom");
+		adSlot2.setTargeting("position", "Top");
+		adSlot2.addService(googletag.pubads());
+		*/
+	}
+</script>
+
+<script type="text/javascript">
+	googletag.pubads().enableSingleRequest();
+	googletag.pubads().enableSyncRendering();
+	googletag.enableServices();
+</script>
+
+
+
+
+{%endblock%} {%block content%}
+<!-- <section id="content-header">
+	<img src="images/base-images/thumbs/1476823129736.jpg" alt="#" />
+	<p class="cutline">Cutline goes here. You can remove this tag if you don't feel the lead image needs a cutline</p>
+</section> -->
+<!-- end contentHeader -->
+
+<nav class="sideNav">
+	<div class="name-tile">
+		MEME MAKER
+	</div>
+  <div data-destination="choose-theme" class="nav-button active-nav">Create theme</div>
+	<div data-destination="upload-meme" class="nav-button" id="upload-image">Upload image</div>
+	<div data-destination="create-builder" class="nav-button">Create<br/>builder</div>
+	<div data-destination="create-gallery" class="nav-button">Create<br/>gallery</div>
+</nav>
+
+<div class="pane">
+
+  <!-- CHOOSE A THEME SECTION -->
+  <section class="controls active-pane" id="choose-theme">
+    <h3>Create a meme</h3>
+    <div class="theme" data-theme="traditional">
+      <img src="../images/traditional-meme.jpg"/>
+      Traditional white type with black border placed over a photo you select.
+    </div>
+    <!-- <div class="theme" data-theme="traditional">
+      Graffiti
+      <img src="../images/graffiti-meme.jpg"/>
+      Paint multi-colored graffiti over a photo you select.
+    </div> -->
+  </section>
+
+	<!-- UPLOAD IMAGE SECTION -->
+	<section class="controls" id="upload-meme">
+		<h3>Upload a meme image</h3>
+		<form enctype="multipart/form-data" id="upload-form">
+			<input name="name" type="file" id="upload-input"><br/>
+			<input type="text" name="tags" placeholder="Tags" /><br/></br/>
+			<!-- <input type="submit" value="Upload"/> -->
+			<div class="btn int-btn" id="btn-upload-form" data-target="upload-form">Upload</div>
+		</form>
+		<h4>Session uploads</h4>
+		<div class="console" id="upload-console"></div>
+	</section>
+
+	<!-- CREATE PAGE/BUILDER SECTION -->
+	<section class="controls" id="create-builder">
+			<h3>Create a Meme Maker</h3>
+			<p class="subhed">Search for background images</p>
+				<input type="text" name="search-tags" placeholder="Tags" /></br>
+				</br/>
+				<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
+			<h4>Search results</h4>
+			<div class="console search" id="image-thumbs"></div>
+			<h4>Selected images for page</h4>
+			<div class="console selected" id="page-images"></div>
+		<div class="component" id="builder-inputs">
+			<p class="subhed">Build a Meme Maker</p>
+				<input type="text" name="head" placeholder="Headline"/></br>
+				<input type="text" name="intro" placeholder="Intro"/></br>
+				<input type="text" name="desk" placeholder="Desk"/></br>
+				<input type="text" name="author" placeholder="Author"/></br>
+				<input type="text" name="tags" placeholder="Tags"/></br>
+			</br>
+				<div class="btn int-btn" id="btn-create-builder" data-target="build-page">Create Meme Maker</div>
+		</div>
+    <div class="component">
+      <p class="subhed">URL to your Meme Maker</p>
+      <div class='console url-box' id="builder-url"></div>
+    </div>
+	</section>
+
+  <!-- DISPLAY URL -->
+
+	<!-- MODERATE MEMES SECTION -->
+	<section class="controls" id="create-gallery">
+		<h3>Create a gallery of submitted memes</h3>
+		<div class="btn int-btn" id="btn-filter-builder" data-target="filter-builder">By pages</div>
+		<!-- <div class="btn int-btn optional" id="btn-filter-date" data-target="filter-date">By date</div>
+		<div class="btn int-btn optional" id="btn-filter-tags" data-target="filter-tags">By tags</div>
+		<div class="btn int-btn optional" id="btn-filter-text" data-target="filter-word">By word</div>
+    <div class="btn int-btn optional" id="btn-filter-text" data-target="filter-author">By author</div>
+    <div class="btn int-btn optional" id="btn-filter-text" data-target="filter-desk">By desk</div> -->
+    <div id="filter-builder"></div>
+    <h4>Submitted memes</h4>
+		<div class="console moderate" id="meme-thumbs-moderate"></div>
+		<h4>Selected memes for publishing</h4>
+		<div class="console publish" id="meme-thumbs-publish"></div>
+		<!-- <input type="submit" id='btn-publish' value="Reject"> -->
+    <div class="component" id="gallery-inputs">
+			<p class="subhed">Build a gallery</p>
+				<input type="text" name="head" placeholder="Headline"/></br>
+				<input type="text" name="intro" placeholder="Intro"/></br>
+				<input type="text" name="desk" placeholder="Desk"/></br>
+				<input type="text" name="author" placeholder="Author"/></br>
+				<input type="text" name="tags" placeholder="Tags"/></br>
+			</br>
+				<!-- <input type="submit" value="Build page"> -->
+				<div class="btn int-btn" id="btn-publish">Publish</div>
+		</div>
+    <div class="component">
+      <p class="subhed">URL to your meme gallery</p>
+      <div class='console url-box' id="gallery-url"></div>
+    </div>
+	</section>
+
+</div>
+
+<!-- end contentWell -->
+{%endblock%} {%block custom_foot%}
+<script type="text/javascript" src="../js/admin.js" /> {%endblock%} {%block custom_social_meta%}
+<script type="text/javascript">
+	var storyTitle = "{{tweetText}}", // headline in tweet card
+		storyURL = "{{url}}",
+		leadText = "{{shareText}}", //description in tweet card
+		storyIMG = "{{imgURL}}",
+		storyAuthor = "{{authors}}",
+		twitterTag = "{{sectionTwitter}}",
+		comments = true,
+		share = true;
+	OAS_sitepage = 'www.dallasnews.com/{{desk}}/{{section}}/';
+</script>
+{%endblock%}

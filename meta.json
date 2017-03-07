@@ -1,0 +1,26 @@
+{
+  "name": "meme generator",
+  "publishYear": 2016,
+  "publishDate": "2016-9-22T00:00:00Z",
+  "description": "<Project description>",
+  "url": "interactives.dallasnews.com/2016/meme-generator/",
+  "id": "8070622385",
+  "authors": "<Project authors>",
+  "authorsFbook": "<Project authors' facebook links>",
+  "desk": "<e.g., entertainment>",
+  "section": "<e.g., books>",
+  "keywords": [
+    "interactives",
+    "dallas",
+    "dallas news",
+    "dfw news",
+    "dallas newspaper",
+    "dallas morning news",
+    "dallas morning news newspaper"
+  ],
+  "imgURL": "<Preview image url>",
+  "imgWidth": "<Preview image width>",
+  "imgHeight": "<Preview image height>",
+  "twitter": "<@siteHandle e.g. @dallasnews>",
+  "authorTwitter": "<@twitterHandle e.g. @AlanPeppard>"
+}

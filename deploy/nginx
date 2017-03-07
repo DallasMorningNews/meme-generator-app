@@ -1,0 +1,9 @@
+location ~ ^/meme-generator(/.*|$) {
+  alias /var/www/meme-generator/public$1;
+  passenger_base_uri /meme-generator;
+  passenger_app_root /var/www/meme-generator;
+  passenger_document_root /var/www/meme-generator/public;
+  passenger_enabled on;
+  passenger_app_type node;
+  passenger_startup_file app.js;
+}

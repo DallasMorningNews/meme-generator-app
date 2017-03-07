@@ -1,0 +1,310 @@
+@charset "UTF-8";
+//  _____           _                    _____ _         _
+// /  __ \         | |                  /  ___| |       | |
+// | /  \/_   _ ___| |_ ___  _ __ ___   \ `--.| |_ _   _| | ___  ___
+// | |   | | | / __| __/ _ \| '_ ` _ \   `--. \ __| | | | |/ _ \/ __|
+// | \__/\ |_| \__ \ || (_) | | | | | | /\__/ / |_| |_| | |  __/\__ \
+//  \____/\__,_|___/\__\___/|_| |_| |_| \____/ \__|\__, |_|\___||___/
+//                                                  __/ |
+//                                                 |___/
+@import 'variables';
+@import 'mixins';
+@font-face {
+    font-family: 'Impact';
+    src: url('http://interactives.dallasnews.com/2016/cowboys-memes/assets/Impact.ttf');
+}
+#data-span {
+    display: none;
+}
+.meme-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    font-family: 'Gotham A', 'Gotham B', Arial, sans-serif;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    margin-bottom: 2.4rem;
+}
+.meme-container p {
+    margin-bottom: 20px;
+    clear: both;
+}
+.section-container {
+    margin-bottom: 50px;
+}
+#thumbsBox img {
+    cursor: pointer;
+    display: inline;
+    margin-top: -6px;
+}
+#svgContainer {
+    position: relative;
+}
+#svgContainer img {
+    width: 100%;
+}
+.sizing{
+    background: #323232;
+    width: 150px;
+    height: 30px;
+    margin: 0px auto;
+    text-align: center;
+    color: whitesmoke;
+    line-height: 30px;
+    font-size: .75em;
+    position: relative;
+}
+.sizing img{
+    cursor: pointer;
+}
+#topSizing{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+#bottomSizing{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.minus{
+    position: absolute;
+    left: 3px;
+    top: 6px;
+}
+.plus{
+    position: absolute;
+    right: 3px;
+    top: 6px;
+}
+
+input[type=text] {
+    font-family: 'Impact', 'Gotham A', 'Gotham B', Arial, sans-serif;
+    font-size: 70px;
+    width: 100%;
+    background: none;
+    text-align: center;
+    border: none;
+    text-transform: uppercase;
+    color: white;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+
+}
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: white;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: white;
+}
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: white;
+}
+
+#topText {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow-x: hidden;
+}
+#bottomText {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    overflow-x: hidden;
+}
+.textEdits {
+    width: 45%;
+    float: left;
+}
+#textInput {
+    margin-right: 25px;
+}
+.section-container img {
+    width: 20%;
+}
+.number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: steelblue;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: 700;
+}
+.textEdits {
+    font-family: 'Gotham A', 'Gotham B', Arial, sans-serif;
+}
+.textSize {
+    margin-top: 34px;
+    clear: both;
+}
+.letter {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #d7d7d7;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 50px;
+    font-family: impact, 'Gotham A', 'Gotham B', Arial, sans-serif;
+    cursor: pointer;
+}
+.style-4 input[type="text"] {
+    text-transform: uppercase;
+    background-color: $black245;
+    color: $black66;
+    font-family: impact, 'Gotham A', 'Gotham B', Arial, sans-serif;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: none;
+    border-bottom: solid 2px $black215;
+    transition: border 0.3s;
+    font-size: 1.25em;
+}
+.style-4 input[type="text"]:focus {
+    border-bottom: solid 2px dodgerblue;
+}
+.nav {
+    height: 50px;
+    width: 320px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 30px auto 50px;
+    color: white;
+}
+.sectionNav {
+    float: left;
+    width: 160px;
+    text-align: center;
+    font-size: 1em;
+    height: 50px;
+    line-height: 50px;
+    cursor: not-allowed;
+    color: $black245;
+}
+#facebookButton {
+    background-color: #3B5998;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.socialShare {
+    opacity: 0.25;
+}
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.sectionNav img {
+    vertical-align: middle;
+}
+#build,
+#save {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #C75255;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#save {
+    display: none;
+}
+.save {
+    display: none;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    font-size: 1.5em;
+}
+
+#facebookButton img{
+    float: none;
+}
+
+#reload-section{
+    display: none;
+}
+#reload{
+    background-color: #c75255;
+    border-radius: 5px;
+    cursor: default;
+}
+
+#week-picker{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#week-picker button{
+    width: 16%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+    font-size: 1.5em;
+    outline: none;
+}
+#week-picker .active:hover{
+    background-color: orange;
+    color: white;
+}
+#week-picker .active{
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+#week-picker .inactive{
+    background-color: whitesmoke;
+    color: silver;
+}
+#week-picker .selected{
+    background-color: orange;
+    color: white;
+}
+#results-pages p{
+    text-align: center;
+    font-size: 1.75em;
+    margin-bottom: 5px;
+}
+#results-pages h3{
+    text-align: center;
+}
+.week-gallery{
+    width: 25%;
+    float: left;
+    margin: 10px;
+}
+@media (max-width: 510px) {
+    .section-container img {
+        width: 33%;
+    }
+}
+@media (max-width: 800px) {
+    input[type=text] {
+        font-size: 50px;
+        -webkit-text-stroke-width: 3px;
+    }
+}
+@media (max-width: 550px) {
+    input[type=text] {
+        font-size: 40px;
+    }
+}
+@media (max-width: 400px) {
+    input[type=text] {
+        font-size: 30px;
+        -webkit-text-stroke-width: 2px;
+    }
+}
