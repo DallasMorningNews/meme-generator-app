@@ -146,7 +146,7 @@ function displayMemeThumbs(data) {
     $('#meme-thumbs-moderate').prepend(`
       <div class='meme-thumb' imageID="${v.date}">
         <div class="reject-button">X</div>
-        <img src="../images/meme-images/thumbs/${v.date}.png" alt="thumb"/>
+        <img src="https://dmnmemeresized.s3.amazonaws.com/resized-${v.date}.png" alt="thumb"/>
       </div>`);
   });
   $('#create-gallery .meme-thumb:not(.builder-meme) img').click(function () {
@@ -188,7 +188,7 @@ function displayBuilders(builders) {
       console.log(builder);
       const html = `
       <div class='builder' data-builderID='${builder.id}'>
-        <img class='builder-meme' src='https://dmnmemeresized.s3.amazonaws.com/resized-${builder.firstMeme[0].date}.jpg'/>
+        <img class='builder-meme' src='https://dmnmemeresized.s3.amazonaws.com/resized-${builder.firstMeme[0].date}.png'/>
         <span class='builder-head'>${builder.head}</span>
         <span class='builder-intro'>${builder.intro}</span>
         by <span class='builder-author'>${builder.author}</span>
