@@ -11,7 +11,7 @@ $(document).ready(() => {
   const randomImage = _.random(imagesArray.length - 1);
   console.log(randomImage);
 
-  const imageLink = `../images/base-images/${imagesArray[randomImage]}.jpg`;
+  const imageLink = `https://dmnmemebase.s3.amazonaws.com/${imagesArray[randomImage]}.jpg`;
   console.log(imageLink);
 
   // Stuff we'll use later
@@ -33,7 +33,7 @@ $(document).ready(() => {
   // LOAD THUMB IMAGE
   $('#thumbsBox img').click(function () {
     const targetImage = $(this).data('image');
-    const imageLink = `../images/base-images/${targetImage}.jpg`;
+    const imageLink = `https://dmnmemebaseresized.s3.amazonaws.com/resized-${targetImage}.jpg`;
     mountImage(imageLink);
   });
 
