@@ -35,7 +35,7 @@ module.exports = (app) => {
       Body: canvas,
       ContentEncoding: 'base64',
       ContentType: 'image/png',
-    }
+    };
 
     s3.putObject(data, function(err1, data){
       if (err1) {

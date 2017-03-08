@@ -13,6 +13,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_KEY,
   clientSecret: process.env.GOOGLE_SECRET,
   callbackURL: 'http://apps.dallasnews.com/meme-generator/auth/google/callback',
+  //callbackURL: 'http://localhost:4000/meme-generator/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
   if(profile._json.domain === "dallasnews.com"){
         // find or create user in database, etc

@@ -169,7 +169,7 @@ $(document).ready(() => {
     console.log(payload);
 
     $.ajax({
-       url: '/meme-generator/builder/upload/s3',
+       url: '/meme-generator/builder/upload',
        type: 'post',
        data: payload,
        success: function(responseObj) {
