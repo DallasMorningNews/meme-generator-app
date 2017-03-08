@@ -23,8 +23,8 @@ require('./configs/passport');
 var app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false, limit: '2mb' }));
-app.use(bodyParser.json({ limit: '2mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
+app.use(bodyParser.json({ limit: '5mb' }));
 
 // Meta data
 var meta = require('./meta.json');
