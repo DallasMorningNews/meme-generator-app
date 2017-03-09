@@ -271,47 +271,59 @@ $('#create-gallery .btn').click(function generic() {
 $('#btn-publish').click(() => {
   event.preventDefault();
   console.log('Publishing a gallery page');
-  const selectedGalleryImages = [];
   let length = $('#meme-thumbs-publish .meme-thumb').length;
   console.log(length);
 
+  let builderCode = '<div class="meme-container">';
+
   $('#meme-thumbs-publish .meme-thumb').each(function () {
-    // Add to an array and send it to query
-    selectedGalleryImages.push($(this).attr('imageID'));
-    length -= 1;
-    console.log(length);
-    if (length === 0) {
-      console.log(selectedGalleryImages);
-      const formData = new FormData();
-      console.log($("#gallery-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
-      formData.append('head', $("#gallery-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
-      formData.append('intro', $("#gallery-inputs input[name='intro']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
-      formData.append('desk', $("#gallery-inputs input[name='desk']").val());
-      formData.append('author', $("#gallery-inputs input[name='author']").val());
-      formData.append('tags', $("#gallery-inputs input[name='tags']").val());
-      formData.append('memes', selectedGalleryImages);
-      // Display the formData key/value pairs
-      for (const pair of formData.entries()) {
-        console.log(`${pair[0]}, ${pair[1]}`);
-      }
-      $.ajax({
-        url: '/meme-generator/admin/create-gallery',
-        type: 'post',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: (responseObj) => {
-          console.log('Gallery input successful');
-          console.log(responseObj);
-          // BuilderURL
-          const baseURL = 'http://localhost:4000/meme-generator/gallery/';
-          const galleryLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
-          $('#gallery-url').append(galleryLink);
-        },
-      });
-    }
+    let imageID = $(this).attr('imageid');
+    const thisEntry = `
+      <div class="meme">
+        <img src="https://dmnmeme.s3.amazonaws.com/${imageID}.png" width="100%"/>
+      </div>
+    `;
+
+    builderCode += thisEntry;
   });
+  builderCode += '</div>';
+  console.log(builderCode);
+  $('#gallery-code').text(builderCode);
 });
+
+    // length -= 1;
+    // console.log(length);
+    // if (length === 0) {
+    //   console.log(selectedGalleryImages);
+    //   const formData = new FormData();
+    //   console.log($("#gallery-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
+    //   formData.append('head', $("#gallery-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
+    //   formData.append('intro', $("#gallery-inputs input[name='intro']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
+    //   formData.append('desk', $("#gallery-inputs input[name='desk']").val());
+    //   formData.append('author', $("#gallery-inputs input[name='author']").val());
+    //   formData.append('tags', $("#gallery-inputs input[name='tags']").val());
+    //   formData.append('memes', selectedGalleryImages);
+    //   // Display the formData key/value pairs
+    //   for (const pair of formData.entries()) {
+    //     console.log(`${pair[0]}, ${pair[1]}`);
+    //   }
+    //   $.ajax({
+    //     url: '/meme-generator/admin/create-gallery',
+    //     type: 'post',
+    //     data: formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success: (responseObj) => {
+    //       console.log('Gallery input successful');
+    //       console.log(responseObj);
+    //       // BuilderURL
+    //       const baseURL = 'http://localhost:4000/meme-generator/gallery/';
+    //       const galleryLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
+    //       $('#gallery-url').append(galleryLink);
+    //     },
+    //   });
+    // }
+
 
 // //////////////////////////////////////
 // //////////////////////////////////////

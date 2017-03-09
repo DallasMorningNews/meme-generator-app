@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Droid+Sans+Mono");
 /*
 TABLE OF CONTENTS
 -----------------
@@ -908,6 +909,7 @@ XIX. ADS
     margin: 2.4rem 0;
     padding: 2.4rem 0; } }
 
+@import url("https://fonts.googleapis.com/css?family=Droid+Sans+Mono");
 .bg-black {
   position: fixed;
   width: 100%; }
@@ -1193,3 +1195,6 @@ input[type=submit] {
 canvas {
   max-width: 100%;
   height: auto; }
+
+#gallery-code {
+  font-family: 'Droid Sans Mono', monospace; }
