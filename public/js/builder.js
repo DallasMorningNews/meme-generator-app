@@ -33,7 +33,7 @@ $(document).ready(() => {
   // LOAD THUMB IMAGE
   $('#thumbsBox img').click(function () {
     const targetImage = $(this).data('image');
-    const imageLink = `https://dmnmemebase.s3.amazonaws.com/${targetImage}.jpg`;
+    const imageLink = `https://dmnmemebase.s3.amazonaws.com/resized-${targetImage}.jpg`;
     mountImage(imageLink);
   });
 
