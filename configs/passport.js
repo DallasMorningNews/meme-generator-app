@@ -26,11 +26,11 @@ passport.use(new GoogleStrategy({
 ));
 //
 passport.serializeUser(function(profile, done) {
-  console.log('serializing profile.');
+  // console.log('serializing profile.');
   done(null, profile.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log('deserialize profile.');
+  // console.log('deserialize profile.');
   done(null, id);
 });

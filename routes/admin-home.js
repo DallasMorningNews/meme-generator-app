@@ -7,7 +7,7 @@ module.exports = function(app) {
     // JUST RENDER THE PAGE
     app.get('/admin', function (req, res) {
       console.log('Loading admin-home');
-      console.log(req.session);
+      // console.log(req.session);
       // if user is authenticated in the session, carry on
       if (req.isAuthenticated() ){
         res.render('admin.html', meta);

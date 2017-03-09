@@ -1079,7 +1079,8 @@ input[type="text"]:focus {
   margin: 10px;
   -webkit-box-shadow: 3px 3px 13px -2px #adadad;
   -moz-box-shadow: 3px 3px 13px -2px #adadad;
-  box-shadow: 3px 3px 13px -2px #adadad; }
+  box-shadow: 3px 3px 13px -2px #adadad;
+  width: 300px; }
 
 input[type=submit] {
   background-color: #3E9DD6;
@@ -1127,9 +1128,6 @@ input[type=submit] {
 .meme-thumb {
   display: inline-block;
   position: relative; }
-
-.console img {
-  width: 200px; }
 
 .reject-button {
   background-color: #DD5D56;

@@ -194,10 +194,11 @@ input[type="text"]:focus {
 
 .console img {
   cursor: pointer;
-    margin: 10px;
-    -webkit-box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
-    -moz-box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
-    box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
+  margin: 10px;
+  -webkit-box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
+  -moz-box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
+  box-shadow: 3px 3px 13px -2px rgba(173,173,173,1);
+  width: 300px;
 }
 
 input[type=submit] {
@@ -250,9 +251,6 @@ input[type=submit] {
     position: relative;
 }
 
-.console img{
-  width: 200px;
-}
 
 .reject-button {
     background-color: #DD5D56;

@@ -19,7 +19,7 @@ module.exports = function(app) {
   });
 
   app.get('/login', (req, res, next) => {
-    console.log(req.session);
+    // console.log(req.session);
     res.render('login.html');
   });
 
