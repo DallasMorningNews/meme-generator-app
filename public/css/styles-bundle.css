@@ -1188,3 +1188,10 @@ input[type=submit] {
 .gallery-meme {
   width: 100%;
   margin-bottom: 75px; }
+
+#story-head h3 {
+  margin-top: 100px; }
+
+canvas {
+  max-width: 100%;
+  height: auto; }

@@ -62,7 +62,7 @@ module.exports = (app) => {
           } else {
             // Success
             console.log('Meme database updated successfully');
-            res.send('ok');
+            res.send(outgoingPayload.imagename);
           }
         });
       }
