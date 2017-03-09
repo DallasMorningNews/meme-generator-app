@@ -37,6 +37,8 @@ module.exports = (app) => {
       ContentType: 'image/png',
     };
 
+    const outgoingPayload = {};
+
     s3.putObject(data, function(err1, data){
       if (err1) {
         console.log(err1);
@@ -44,7 +46,7 @@ module.exports = (app) => {
       } else {
         console.log(`succesfully uploaded the ${newName}!`);
         // Construct an object to use for updating database
-        const outgoingPayload = {};
+
         outgoingPayload.imagename = newName;
         outgoingPayload.builder = incomingPayload.builder;
         outgoingPayload.date = timeID;
