@@ -1167,7 +1167,8 @@ input[type=submit] {
   background: whitesmoke; }
 
 .builder {
-  cursor: pointer; }
+  cursor: pointer;
+  position: relative; }
 
 .builder-meme {
   width: 100%;
@@ -1184,6 +1185,20 @@ input[type=submit] {
 
 .builder .builder-author, .builder .builder-desk {
   text-transform: capitalize; }
+
+.meme-count {
+  position: absolute;
+  background: #DD5D56;
+  top: 0px;
+  right: 0px;
+  color: white;
+  border-radius: 5px;
+  height: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 2rem;
+  font-weight: 700;
+  padding: 0px 7px; }
 
 .gallery-meme {
   width: 100%;

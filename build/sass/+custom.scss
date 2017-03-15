@@ -294,10 +294,11 @@ input[type=submit] {
 }
 .builder{
   cursor: pointer;
+  position: relative;
 }
 .builder-meme{
   width: 100%;
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .builder .builder-head{
   font-size: 2rem;
@@ -311,10 +312,21 @@ margin-bottom: 10px;
 .builder .builder-author, .builder .builder-desk{
   text-transform: capitalize;
 }
-#builder-url{
-
-  //display: none;
+.meme-count {
+    position: absolute;
+    background: #DD5D56;
+    top: 0px;
+    right: 0px;
+    color: white;
+    border-radius: 5px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 2rem;
+    font-weight: 700;
+    padding: 0px 7px;
 }
+
 .gallery-meme{
   width: 100%;
   margin-bottom: 75px;

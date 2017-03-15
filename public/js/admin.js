@@ -179,6 +179,25 @@ function displayMemeThumbs(data) {
 //    III CREATE GALLERY PAGE
 // //////////////////////////////////////////////
 
+function countMemes() {
+  console.log('countMemes');
+  $.ajax({
+    url: '/meme-generator/admin/count/memes/byBuilder',
+    type: 'get',
+    success: (memes) => {
+      console.log(memes);
+      for (const builder of memes) {
+        console.log(builder.builder, builder.count);
+        console.log(`[data-builderID='${builder.id}']`);
+        $(`[data-builderID='${builder.builder}']`).find('.meme-count').text(builder.count);
+      }
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
+}
+
 function displayBuilders(builders) {
   console.log('displayBuilders');
   return new Promise((resolve, reject) => {
@@ -188,6 +207,7 @@ function displayBuilders(builders) {
       console.log(builder);
       const html = `
       <div class='builder' data-builderID='${builder.id}'>
+        <div class='meme-count'>#</div>
         <img class='builder-meme' src='https://dmnmemeresized.s3.amazonaws.com/resized-${builder.firstMeme[0].date}.png'/>
         <span class='builder-head'>${builder.head}</span>
         <span class='builder-intro'>${builder.intro}</span>
@@ -201,6 +221,7 @@ function displayBuilders(builders) {
         resolve(true);
       }
     }
+    const memeCounts = countMemes();
   });
 }
 
