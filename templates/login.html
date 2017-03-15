@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
+<style>
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.bg-black {
+  min-height: 51px;
+  padding: 6px 12px;
+  background-color: #323232;
+  color: #ffffff;
+  position: relative;
+  z-index: 30;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.logo {
+    background-image: url(http://interactives.templates.statics.s3.amazonaws.com/v1.0/images/_dmn_logo.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: left center;
+    opacity: .85;
+    display: block;
+    height: 40px;
+    width: 155.4px;
+    float: left;
+    cursor: pointer;
+    -webkit-transtion: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+}
+.login{
+  width: 40%;
+  margin: 100px auto;
+}
+.login img{
+  width: 100%;
+}
+</style>
 <body>
 <header class="bg-black">
   <a class="logo" href="http://www.dallasnews.com" id="top"><span class="sr-only">The Dallas Morning News</span></a>
 </header>
-
-<a href="auth/google">Sign In with Google</a>
-
+<div class="login">
+  <a href="auth/google"><img src="images/_google-btn.png"/></a>
+</div>
 </body>
 </html>

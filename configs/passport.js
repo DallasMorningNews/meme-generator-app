@@ -15,15 +15,14 @@ passport.use(new GoogleStrategy({
   callbackURL: 'http://apps.dallasnews.com/meme-generator/auth/google/callback',
   // callbackURL: 'http://localhost:4000/meme-generator/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
-  if(profile._json.domain === "dallasnews.com"){
-        // find or create user in database, etc
-        done(null, profile);
-    }else{
-        // fail
-        done(null, false, new Error("Invalid host domain"));
-    }
-}
-));
+  if (profile._json.domain === 'dallasnews.com') {
+    // find or create user in database, etc
+    done(null, profile);
+  } else {
+    // fail
+    done(null, false, new Error('Invalid host domain'));
+  }
+}));
 //
 passport.serializeUser(function(profile, done) {
   // console.log('serializing profile.');
