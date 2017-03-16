@@ -33,7 +33,7 @@ $(document).ready(() => {
   // LOAD THUMB IMAGE
   $('#thumbsBox img').click(function () {
     const targetImage = $(this).data('image');
-    const imageLink = `https://dmnmemebase.s3.amazonaws.com/resized-${targetImage}.jpg`;
+    const imageLink = `https://dmnmemebase.s3.amazonaws.com/${targetImage}.jpg`;
     mountImage(imageLink);
   });
 
@@ -41,13 +41,13 @@ $(document).ready(() => {
   //  RESIZE MEME
   //--------------------------------------
   function resizeMeme() {
-    console.log("- Resize");
-    //Make Responsive
-    let memeWidth = $memeContainer.width();
-    let memeHeight = memeWidth * imageRatio;
-    //Meme width is 100%
+    console.log('- Resize');
+    // Make Responsive
+    const memeWidth = $memeContainer.width();
+    const memeHeight = memeWidth * imageRatio;
+    // Meme width is 100%
     $memeContainer.height(memeHeight);
-    //Adjust canvas to fit
+    // Adjust canvas to fit
     $canvas.outerWidth(memeWidth);
     $canvas.outerHeight(memeHeight);
     resizeFonts();
