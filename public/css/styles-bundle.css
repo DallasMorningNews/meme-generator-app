@@ -1028,7 +1028,17 @@ input[type="text"]:focus {
   margin-bottom: 20px;
   padding: 20px;
   background: white;
-  background-color: whitesmoke; }
+  background-color: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%; }
+  @media screen and (max-width: 800px) {
+    .console {
+      width: 50%; } }
+  @media screen and (max-width: 500px) {
+    .console {
+      width: 100%; } }
 
 .url-box {
   margin-top: 20px;
@@ -1077,12 +1087,12 @@ input[type="text"]:focus {
   width: 100%; }
 
 .console img {
+  width: 100%;
   cursor: pointer;
   margin: 10px;
   -webkit-box-shadow: 3px 3px 13px -2px #adadad;
   -moz-box-shadow: 3px 3px 13px -2px #adadad;
-  box-shadow: 3px 3px 13px -2px #adadad;
-  width: 300px; }
+  box-shadow: 3px 3px 13px -2px #adadad; }
 
 input[type=submit] {
   background-color: #3E9DD6;
@@ -1128,8 +1138,9 @@ input[type=submit] {
   -webkit-text-stroke-color: black; }
 
 .meme-thumb {
-  display: inline-block;
-  position: relative; }
+  position: relative;
+  position: relative;
+  width: 30%; }
 
 .reject-button {
   background-color: #DD5D56;
@@ -1137,7 +1148,7 @@ input[type=submit] {
   height: 20px;
   border-radius: 25%;
   position: absolute;
-  right: 0px;
+  right: -5px;
   color: white;
   text-align: center;
   font-weight: 700;
@@ -1159,11 +1170,15 @@ input[type=submit] {
   margin-top: 25px;
   cursor: pointer; }
 
+#filter-builder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
 #filter-builder .builder {
-  width: 250px;
-  display: inline-table;
+  width: 30%;
   padding: 10px;
-  margin: 10px 10px 10px 0px;
+  margin-bottom: 10px;
   background: whitesmoke; }
 
 .builder {
