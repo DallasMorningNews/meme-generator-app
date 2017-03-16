@@ -24,10 +24,10 @@
   position: fixed;
   left: 0;
   top: 50px;
-    display: table-cell;
-    width: 100px;
-    height: 100%;
-    background: rgba(#323232, 0.93);
+  display: table-cell;
+  width: 100px;
+  height: 100%;
+  background: rgba(#323232, 0.93);
 }
 .sideNav #upload-image{
   display: none;
@@ -62,6 +62,12 @@ input[type="text"]:focus {
   line-height: 1.5rem;
   display: inline-block;
   margin-right: 20px;
+  @media screen and (max-width: $width-medium) {
+    width: 50%;
+  }
+  @media screen and (max-width: $width-small) {
+    width: 100%
+  }
 }
 .theme:hover{
   background-color: #e6f6ff;
@@ -144,12 +150,6 @@ input[type="text"]:focus {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  @media screen and (max-width: $width-medium) {
-    width: 50%;
-  }
-  @media screen and (max-width: $width-small) {
-    width: 100%
-  }
 }
 .url-box{
   margin-top: 20px;
@@ -260,6 +260,12 @@ input[type=submit] {
     position: relative;
     position: relative;
     width: 30%;
+    @media screen and (max-width: $width-medium) {
+      width: 50%;
+    }
+    @media screen and (max-width: $width-small) {
+      width: 100%
+    }
 }
 
 
@@ -305,6 +311,12 @@ input[type=submit] {
     padding: 10px;
     margin-bottom: 10px;
     background: whitesmoke;
+    @media screen and (max-width: $width-medium) {
+      width: 50%;
+    }
+    @media screen and (max-width: $width-small) {
+      width: 100%
+    }
 }
 .builder{
   cursor: pointer;

@@ -50,6 +50,12 @@ input[type="text"]:focus {
   line-height: 1.5rem;
   display: inline-block;
   margin-right: 20px; }
+  @media screen and (max-width: 800px) {
+    .theme {
+      width: 50%; } }
+  @media screen and (max-width: 500px) {
+    .theme {
+      width: 100%; } }
 
 .theme:hover {
   background-color: #e6f6ff; }
@@ -122,12 +128,6 @@ input[type="text"]:focus {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%; }
-  @media screen and (max-width: 800px) {
-    .console {
-      width: 50%; } }
-  @media screen and (max-width: 500px) {
-    .console {
-      width: 100%; } }
 
 .url-box {
   margin-top: 20px;
@@ -230,6 +230,12 @@ input[type=submit] {
   position: relative;
   position: relative;
   width: 30%; }
+  @media screen and (max-width: 800px) {
+    .meme-thumb {
+      width: 50%; } }
+  @media screen and (max-width: 500px) {
+    .meme-thumb {
+      width: 100%; } }
 
 .reject-button {
   background-color: #DD5D56;
@@ -269,6 +275,12 @@ input[type=submit] {
   padding: 10px;
   margin-bottom: 10px;
   background: whitesmoke; }
+  @media screen and (max-width: 800px) {
+    #filter-builder .builder {
+      width: 50%; } }
+  @media screen and (max-width: 500px) {
+    #filter-builder .builder {
+      width: 100%; } }
 
 .builder {
   cursor: pointer;
