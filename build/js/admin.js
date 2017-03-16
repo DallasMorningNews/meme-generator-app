@@ -365,6 +365,13 @@ $(document).ready(() => {
     $('.nav-button').removeClass('active-nav');
     $(this).addClass('active-nav');
   });
+  //
+  // //////////////////////////////////////
+  //    MAKE CONSOLE FOR PUBLISH SORTABLE
+  // //////////////////////////////////////
+  $('#meme-thumbs-publish').sortable({
+    revert: true,
+  });
 
   $('.theme').click(() => {
     $('.sideNav #upload-image').slideDown();
