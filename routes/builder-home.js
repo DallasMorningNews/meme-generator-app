@@ -18,7 +18,9 @@ module.exports = (app) => {
 
       // Append keywords from buiolder to meta.json's existing keywords.
       const keywords = page[0].tags.split(', ');
-      meta.keywords = [...meta.keywords, ...keywords];
+      for (const keyword of keywords){
+        meta.keywords.push(keyword);
+      }
 
       // Get published year
       const date = new Date(parseFloat(page[0].date));
