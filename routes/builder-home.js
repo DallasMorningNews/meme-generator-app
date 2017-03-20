@@ -42,7 +42,12 @@ module.exports = (app) => {
       // Get first meme submitted for promo image
       req.models.memes.find({ builder: page[0].id }).limit(1).run((err, firstMeme) => {
         if (err) { console.log(err); }
-        meta.imgURL = `https://dmnmeme.s3.amazonaws.com/${firstMeme[0].date}.png`;
+        if (firstMeme[0]) {
+          console.log('There is a first meme');
+          meta.imgURL = `https://dmnmeme.s3.amazonaws.com/${firstMeme[0].date}.png`;
+        } else {
+          console.log('NO first meme available');
+        }
         console.log(meta);
         res.render('builder.html', meta);
       });

@@ -1,6 +1,6 @@
 /* global $:true  document:true, d3:true, _:true*/
 $(document).ready(() => {
-  console.log('Ready');
+  // console.log('Ready');
   const imagesArray = images.split(',');
 
   // Build thumbs
@@ -9,10 +9,10 @@ $(document).ready(() => {
     $('#thumbsBox').append(thisLine);
   }
   const randomImage = _.random(imagesArray.length - 1);
-  console.log(randomImage);
+  // console.log(randomImage);
 
-  const imageLink = `https://dmnmemebase.s3.amazonaws.com/${imagesArray[randomImage]}.jpg`;
-  console.log(imageLink);
+  let imageLink = `https://dmnmemebase.s3.amazonaws.com/${imagesArray[randomImage]}.jpg`;
+  // console.log(imageLink);
 
   // Stuff we'll use later
   const $memeContainer = $('#meme-container');
@@ -33,7 +33,7 @@ $(document).ready(() => {
   // LOAD THUMB IMAGE
   $('#thumbsBox img').click(function () {
     const targetImage = $(this).data('image');
-    const imageLink = `https://dmnmemebase.s3.amazonaws.com/${targetImage}.jpg`;
+    imageLink = `https://dmnmemebase.s3.amazonaws.com/${targetImage}.jpg`;
     mountImage(imageLink);
   });
 
@@ -41,7 +41,7 @@ $(document).ready(() => {
   //  RESIZE MEME
   //--------------------------------------
   function resizeMeme() {
-    console.log('- Resize');
+    // console.log('- Resize');
     // Make Responsive
     const memeWidth = $memeContainer.width();
     const memeHeight = memeWidth * imageRatio;
@@ -57,23 +57,22 @@ $(document).ready(() => {
   //   MOUNT IMAGES TO CANVAS
   //--------------------------------------
   function mountImage(imageLink) {
-    console.log("Mounting with "+imageLink);
-    let image = new Image();
+    // console.log("Mounting with "+imageLink);
+    const image = new Image();
     image.setAttribute('crossOrigin', 'anonymous');
-    image.onload = function() { //once loaded
-      console.log("mountImage() with " + imageLink);
-      //The width/ratio of native photo
+    image.onload = function () { // once loaded
+      // The width/ratio of native photo
       imageWidth = this.naturalWidth;
       imageHeight = this.naturalHeight;
       imageRatio = imageHeight / imageWidth;
-      //The width and height of canvas container div
+      // The width and height of canvas container div
       memeWidth = $memeContainer.width();
       memeHeight = memeWidth * imageRatio;
-      //Set the attribute of the canvas to the container's div
+      // Set the attribute of the canvas to the container's div
       canvas.width = memeWidth;
       canvas.height = memeHeight;
-      console.log(imageWidth + " : " + imageHeight + " : " + imageRatio);
-      //Actually draw the image at 0,0 with width and height
+      // console.log(imageWidth + " : " + imageHeight + " : " + imageRatio);
+      // Actually draw the image at 0,0 with width and height
       ctx.drawImage(image, 0, 0, memeWidth, memeHeight);
       resizeMeme();
     };
@@ -84,7 +83,7 @@ $(document).ready(() => {
   //  RESIZE FONTS
   //--------------------------------------
   function resizeFonts() {
-    console.log("- resizeFonts with "+bottomFontRatio+" and "+topFontRatio);
+    //console.log("- resizeFonts with "+bottomFontRatio+" and "+topFontRatio);
     let memeWidth = $memeContainer.width();
 
     topFontSize = memeWidth * topFontRatio;
@@ -97,6 +96,8 @@ $(document).ready(() => {
     $('#topLineText').css("-webkit-text-stroke-width", topStrokeSize + "px");
     $('#bottomLineText').css("font-size", bottomFontSize + "px");
     $('#bottomLineText').css("-webkit-text-stroke-width", bottomStrokeSize + "px");
+
+    console.log('imageLink',imageLink);
   }
 
   mountImage(imageLink); //Initial mount
@@ -105,7 +106,7 @@ $(document).ready(() => {
   });
 
   $(".minus").click(function() {
-    console.log("minus clicked");
+    //console.log("minus clicked");
     let memeWidth = $memeContainer.width();
     var selected = $(this).parent().attr("id");
     switch (selected) {
@@ -118,12 +119,12 @@ $(document).ready(() => {
         resizeFonts();
         break;
       default:
-        console.log("Error in plus switch");
+        //console.log("Error in plus switch");
     }
   });
 
   $(".plus").click(function() {
-    console.log("plus clicked");
+    //console.log("plus clicked");
     let memeWidth = $memeContainer.width();
     var selected = $(this).parent().attr("id");
     switch (selected) {
@@ -136,26 +137,18 @@ $(document).ready(() => {
         resizeFonts();
         break;
       default:
-        console.log("Error in plus switch");
+        //console.log("Error in plus switch");
     }
   });
 
-  $("#build").click(function() {
-
-    topText = $("#topLineText").val().toUpperCase();
-    bottomText = $("#bottomLineText").val().toUpperCase();
-
-    console.log("top: "+topText);
-    console.log("bottom: "+bottomText);
-
+  $('#build').click(() => {
+    topText = $('#topLineText').val().toUpperCase();
+    bottomText = $('#bottomLineText').val().toUpperCase();
     renderCanvas(topText, bottomText);
-
-    //uploadFile();
-
   });
 
   function saveCanvasToServer(canvas){
-    console.log('saveCanvasToServer...');
+    //console.log('saveCanvasToServer...');
     const payload = {};
     payload.canvas = canvas;
     payload.tags = $('#dataStamp .pageTags').text();
@@ -166,25 +159,57 @@ $(document).ready(() => {
     payload.top = topText;
     payload.bottom = bottomText;
 
-    console.log(payload);
+    //console.log(payload);
 
     $.ajax({
-       url: '/meme-generator/builder/upload',
-       type: 'post',
-       data: payload,
-       success: function(responseObj) {
-       console.log(responseObj);
-       }
+      url: '/meme-generator/builder/upload',
+      type: 'post',
+      data: payload,
+      success: function (responseObj) {
+        $('#meme-container').empty().html(`<img src="https://dmnmeme.s3.amazonaws.com/${responseObj}" width="100%" />`);
+        // console.log(responseObj);
+        $('#build').hide();
+        $('#save').show();
+        $('#save').attr('href', `https://dmnmeme.s3.amazonaws.com/${responseObj}`);
+        $('#save').attr('download', `https://dmnmeme.s3.amazonaws.com/${responseObj}`);
+
+        $('.socialShare').css('opacity', 1);
+        $('.socialShare').css('cursor', 'pointer');
+        $('.socialShare').on();
+
+        // ----------- RELOAD BUTTON
+        $('#reload-section').show();
+        $('#reload').click(() => {
+          location.reload();
+        });
+
+        // -----------  SHARING -----------//
+        const storyIMG = `https://dmnmeme.s3.amazonaws.com/${responseObj}`;
+        const encodedIMGURL = encodeURIComponent(storyIMG);
+        const encodedURL = encodeURIComponent(storyURL);
+
+        $('#facebookButton').click(() => {
+          // Facebook share
+          FB.ui({
+            method: 'feed',
+            name: `${topText} ${bottomText}`,
+            link: window.location.href,
+            // caption: 'Use our meme generator to create your own!',
+            picture: storyIMG,
+            description: $('.pageIntro').text(),
+          });
+        });
+      },
     });
   }
 
   function renderCanvas(topText, bottomText){
-    console.log('renderCanvas()');
+    //console.log(`renderCanvas() with ${imageLink}`);
     const canvas = document.getElementById('tgt');
     const ctx2 = canvas.getContext('2d');
     canvas.width = 1200;
     canvas.height = 630;
-    console.log(canvas.width+" "+canvas.height);
+    //console.log(canvas.width+" "+canvas.height);
 
     const image = new Image();
     image.setAttribute('crossOrigin', 'anonymous');
@@ -215,35 +240,5 @@ $(document).ready(() => {
       saveCanvasToServer(canvasData);
     };
     image.src = imageLink;
-  }
-
-  /*
-  -----------------------------------------------------------------
-  UPLOAD FILE
-  -----------------------------------------------------------------
-  */
-
-  function uploadFile() {
-
-    // ----------- RELOAD BUTTON
-    $('#reload-section').show();
-    $('#reload').click(() => { location.reload(); });
-
-    // -----------  SHARING -----------//
-    const storyIMG = linkToFullImage; // FIND THIS
-    const encodedIMGURL = encodeURIComponent(storyIMG);
-    const encodedURL = encodeURIComponent(storyURL);
-
-    $('#facebookButton').click(() => {
-      // Facebook share
-      FB.ui({
-        method: 'feed',
-        name: `${topText} ${bottomText}`,
-        link: window.location.href,
-        // caption: 'Use our meme generator to create your own!',
-        picture: storyIMG,
-        description: leadText,
-      });
-    });
   }
 });

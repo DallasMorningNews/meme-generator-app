@@ -1040,14 +1040,25 @@ input[type="text"]:focus {
   justify-content: space-between;
   width: 100%; }
 
+.console .console-thumb {
+  cursor: pointer;
+  margin: 10px;
+  width: 30%; }
+  @media screen and (max-width: 800px) {
+    .console .console-thumb {
+      width: 50%; } }
+  @media screen and (max-width: 500px) {
+    .console .console-thumb {
+      width: 100%; } }
+
+.console-thumb img {
+  width: 100%; }
+
 .url-box {
   margin-top: 20px;
   font-size: 2.0rem;
   font-weight: 700;
   color: grey; }
-
-.notSelected {
-  border: 5px solid white; }
 
 .btn {
   padding-left: 20px;
@@ -1085,13 +1096,6 @@ input[type="text"]:focus {
   position: absolute;
   bottom: 0;
   width: 100%; }
-
-.console img {
-  cursor: pointer;
-  margin: 10px;
-  -webkit-box-shadow: 3px 3px 13px -2px #adadad;
-  -moz-box-shadow: 3px 3px 13px -2px #adadad;
-  box-shadow: 3px 3px 13px -2px #adadad; }
 
 input[type=submit] {
   background-color: #3E9DD6;
@@ -1180,6 +1184,9 @@ input[type=submit] {
   flex-wrap: wrap;
   justify-content: space-between; }
 
+.base-thumb {
+  width: 30%; }
+
 #filter-builder .builder {
   width: 30%;
   padding: 10px;
@@ -1190,15 +1197,6 @@ input[type=submit] {
       width: 50%; } }
   @media screen and (max-width: 500px) {
     #filter-builder .builder {
-      width: 100%; } }
-
-.console img {
-  width: 30%; }
-  @media screen and (max-width: 800px) {
-    .console img {
-      width: 50%; } }
-  @media screen and (max-width: 500px) {
-    .console img {
       width: 100%; } }
 
 .builder {
@@ -1248,3 +1246,22 @@ canvas {
 
 #gallery-code {
   font-family: 'Droid Sans Mono', monospace; }
+
+.console .console-thumb {
+  cursor: pointer;
+  margin: 10px;
+  width: 30%; }
+
+@media screen and (max-width: 800px) {
+  .console .console-thumb {
+    width: 50%; } }
+
+@media screen and (max-width: 500px) {
+  .console .console-thumb {
+    width: 100%; } }
+
+.console-thumb img {
+  width: 100%; }
+
+.base-thumb {
+  width: 30%; }

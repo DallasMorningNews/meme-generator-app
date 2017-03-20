@@ -10,8 +10,11 @@ var uploadFormData = new FormData();
 // Display the last image uploaded
 function displayLastSubmission(data) {
   setTimeout(() => {
-    $('#upload-console').prepend(`<img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>`);
-  }, 10000);
+    $('#upload-console').prepend(`
+      <div class='console-thumb'>
+        <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>
+      </div>`);
+  }, 7000);
 }
 
 // ATTACH IMAGE TO FORM UPLOAD
@@ -125,9 +128,12 @@ function displayImageThumbs(data) {
   $('#image-thumbs').empty();
   $.each(data, (k, v) => {
     console.log(v);
-    $('#image-thumbs').prepend(`<img class="notSelected" imageID="${v.imageid}" src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${v.imageid}.jpg" alt="thumb"/>`);
+    $('#image-thumbs').prepend(`
+      <div class='console-thumb'>
+        <img imageID="${v.imageid}" src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${v.imageid}.jpg" alt="thumb"/>
+      </div>`);
   });
-  $('#create-builder img').click(function () {
+  $('#create-builder .console-thumb').click(function () {
     const thisParent = $(this).parent().attr('id');
     if (thisParent === 'image-thumbs') {
       $(this).appendTo($('#page-images'));
@@ -146,7 +152,7 @@ function displayMemeThumbs(data) {
     $('#meme-thumbs-moderate').prepend(`
       <div class='meme-thumb' imageID="${v.date}">
         <div class="reject-button">X</div>
-        <img src="https://dmnmemeresized.s3.amazonaws.com/resized-${v.date}.png" alt="thumb"/>
+        <img src="https://dmnmemeresized.s3.amazonaws.com/resized-${v.date}.png" alt="thumb" width="100%"/>
       </div>`);
   });
   $('#create-gallery .meme-thumb:not(.builder-meme) img').click(function () {
@@ -336,6 +342,9 @@ $(document).ready(() => {
   //    MAKE CONSOLE FOR PUBLISH SORTABLE
   // //////////////////////////////////////
   $('#meme-thumbs-publish').sortable({
+    revert: true,
+  });
+  $('#page-images').sortable({
     revert: true,
   });
 

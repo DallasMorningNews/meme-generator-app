@@ -29,6 +29,9 @@
     margin-bottom: 20px;
     clear: both;
 }
+#meme-container img{
+  width: 100%;
+}
 .section-container {
     margin-bottom: 50px;
 }
@@ -215,6 +218,7 @@ input[type=text] {
     padding-left: 20px;
     padding-right: 20px;
     background-color: #C75255;
+    color: white;
     cursor: pointer;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -286,6 +290,7 @@ input[type=text] {
     float: left;
     margin: 10px;
 }
+
 @media (max-width: 510px) {
     .section-container img {
         width: 33%;
