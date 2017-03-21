@@ -1,5 +1,5 @@
 /* global $:true,document:true,_:true*/
-
+Rainbow.defer = true;
 // //////////////////////////////////////////////
 //    I. UPLOAD IMAGES
 // //////////////////////////////////////////////
@@ -45,6 +45,7 @@ $('#btn-upload-form').click(() => {
       processData: false,
       contentType: false,
       success: (responseObj) => {
+        console.log('success', responseObj);
         $('#upload-form').trigger('reset');
         displayLastSubmission(responseObj);
         uploadFormData = new FormData();
@@ -301,21 +302,24 @@ $('#btn-publish').click(() => {
   const length = $('#meme-thumbs-publish .meme-thumb').length;
   console.log(length);
 
-  let builderCode = '<div class="meme-container">';
+  let builderCode = `<!-- Paste this into a Serif page -->
+<div class="meme-container">
+  `;
 
   $('#meme-thumbs-publish .meme-thumb').each(function () {
     const imageID = $(this).attr('imageid');
     const thisEntry = `
-      <div class="meme">
-        <img src="https://dmnmeme.s3.amazonaws.com/${imageID}.png" width="100%"/>
-      </div>
-    `;
-
+    <div class="meme" style="margin-bottom:15px;">
+      <img src="https://dmnmeme.s3.amazonaws.com/${imageID}.png" width="100%"/>
+    </div>
+`;
     builderCode += thisEntry;
   });
-  builderCode += '</div>';
+  builderCode += `
+</div>`;
   console.log(builderCode);
-  $('#gallery-code').text(builderCode);
+  $('#code-snippet').text(builderCode);
+  Rainbow.color();
 });
 
 // //////////////////////////////////////
@@ -325,7 +329,8 @@ $('#btn-publish').click(() => {
 // //////////////////////////////////////
 
 $(document).ready(() => {
-  let currentDestination = 'choose-theme';
+  let currentDestination = 'upload-meme';
+  $(`#${currentDestination}`).show();
   // //////////////////////////////////////
   //    ADMIN NAV BUTTON
   // //////////////////////////////////////
@@ -348,7 +353,11 @@ $(document).ready(() => {
     revert: true,
   });
 
-  $('.theme').click(() => {
-    $('.sideNav #upload-image').slideDown();
+  $('pre code').each((i, block) => {
+    hljs.highlightBlock(block);
   });
+
+  // $('.theme').click(() => {
+  //   $('.sideNav #upload-image').slideDown();
+  // });
 });

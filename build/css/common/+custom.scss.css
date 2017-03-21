@@ -17,7 +17,7 @@
   height: 100%;
   background: rgba(50, 50, 50, 0.93); }
 
-.sideNav #upload-image {
+#choose-theme {
   display: none; }
 
 .pane {
@@ -279,7 +279,7 @@ input[type=submit] {
 #filter-builder .builder {
   width: 30%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   background: whitesmoke; }
   @media screen and (max-width: 800px) {
     #filter-builder .builder {
@@ -354,3 +354,12 @@ canvas {
 
 .base-thumb {
   width: 30%; }
+
+#upload-console .console-thumb, .search .console-thumb, .selected .console-thumb {
+  max-width: 200px; }
+
+#filter-builder .builder {
+  max-width: 300px; }
+
+#gallery-code pre {
+  width: 100%; }

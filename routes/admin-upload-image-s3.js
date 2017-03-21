@@ -59,8 +59,8 @@ module.exports = function (app) {
         res.send(err);
       } else {
         console.log('Database updated successfully');
+        res.send(imageObj);
       }
     });
-    res.send(imageObj);
   });
 };

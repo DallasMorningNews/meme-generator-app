@@ -28,6 +28,11 @@
 <meta name="news_keywords" content="{{keywords|join(',')}}" />
 
 <script type="text/javascript" src="../js/admin.js"></script>
+<script type="text/javascript" src="../js/rainbow-custom.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+
+
 
 {%endblock%} {%block custom_head%} {%endblock%} {%block ad%}
 <script type="text/javascript" src="http://www.googletagservices.com/tag/js/gpt.js"></script>
@@ -93,8 +98,8 @@
 	<div class="name-tile">
 		MEME MAKER
 	</div>
-  <div data-destination="choose-theme" class="nav-button active-nav">Create theme</div>
-	<div data-destination="upload-meme" class="nav-button" id="upload-image">Upload image</div>
+  <!-- <div data-destination="choose-theme" class="nav-button active-nav">Add image</div> -->
+	<div data-destination="upload-meme" class="nav-button active-nav" id="upload-image">Upload image</div>
 	<div data-destination="create-builder" class="nav-button">Create<br/>builder</div>
 	<div data-destination="create-gallery" class="nav-button">Create<br/>gallery</div>
 </nav>
@@ -178,7 +183,11 @@
 		</div>
     <div class="component">
       <p class="subhed">Your gallery code</p>
-      <div class='console url-box' id="gallery-code"></div>
+      <div class='console url-box' id="gallery-code">
+        <pre>
+          <code id="code-snippet" data-language="html"></code>
+        </pre>
+      </div>
     </div>
 	</section>
 
