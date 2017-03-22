@@ -1275,6 +1275,15 @@ canvas {
 #gallery-code pre {
   width: 100%; }
 
+#meme-thumbs-moderate div {
+  margin-bottom: 20px; }
+
+#meme-thumbs-moderate div {
+  margin-bottom: 20px; }
+
+#meme-thumbs-publish .reject-button {
+  display: none !important; }
+
 @keyframes fade-in {
   0% {
     opacity: 0; }

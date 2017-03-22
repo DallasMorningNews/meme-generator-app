@@ -232,7 +232,8 @@ input[type=submit] {
 .meme-thumb {
   position: relative;
   position: relative;
-  width: 30%; }
+  width: 30%;
+  margin-bottom: 20px; }
   @media screen and (max-width: 800px) {
     .meme-thumb {
       width: 50%; } }
@@ -363,3 +364,12 @@ canvas {
 
 #gallery-code pre {
   width: 100%; }
+
+#meme-thumbs-moderate div {
+  margin-bottom: 20px; }
+
+#meme-thumbs-moderate div {
+  margin-bottom: 20px; }
+
+#meme-thumbs-publish .reject-button {
+  display: none !important; }
