@@ -919,6 +919,14 @@ XIX. ADS
   width: 100%;
   height: 100vh; }
 
+section h3 {
+  margin-bottom: 0; }
+
+section p {
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  line-height: 1.3em; }
+
 .sideNav {
   position: fixed;
   left: 0;
@@ -948,6 +956,14 @@ input[type="text"]:focus {
   outline: none;
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696; }
+
+.lengthWarning {
+  color: #ff8f24;
+  font-weight: 700; }
+
+.lengthAlert {
+  color: #e34e36;
+  font-weight: 700; }
 
 .component {
   margin-top: 20px; }
@@ -1037,7 +1053,6 @@ input[type="text"]:focus {
   background-color: whitesmoke;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   width: 100%; }
 
 .console .console-thumb {
@@ -1143,11 +1158,12 @@ input[type=submit] {
 .meme-thumb {
   position: relative;
   position: relative;
-  width: 30%; }
-  @media screen and (max-width: 800px) {
+  width: 30%;
+  margin: 0px 25px 25px 0px; }
+  @media screen and (max-width: 1010px) {
     .meme-thumb {
-      width: 50%; } }
-  @media screen and (max-width: 500px) {
+      width: 45%; } }
+  @media screen and (max-width: 800px) {
     .meme-thumb {
       width: 100%; } }
 
@@ -1157,7 +1173,8 @@ input[type=submit] {
   height: 20px;
   border-radius: 25%;
   position: absolute;
-  right: -5px;
+  right: -10px;
+  top: -10px;
   color: white;
   text-align: center;
   font-weight: 700;
@@ -1181,8 +1198,7 @@ input[type=submit] {
 
 #filter-builder {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
+  flex-wrap: wrap; }
 
 .base-thumb {
   width: 30%; }
@@ -1191,17 +1207,24 @@ input[type=submit] {
   width: 30%;
   padding: 10px;
   margin-bottom: 25px;
+  margin-right: 25px;
   background: whitesmoke; }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1010px) {
     #filter-builder .builder {
-      width: 50%; } }
-  @media screen and (max-width: 500px) {
+      width: 45%; } }
+  @media screen and (max-width: 800px) {
     #filter-builder .builder {
       width: 100%; } }
 
 .builder {
   cursor: pointer;
   position: relative; }
+
+#builder-inputs p {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  color: silver;
+  font-size: 10px; }
 
 .builder-meme {
   width: 100%;
@@ -1268,9 +1291,6 @@ canvas {
 
 #upload-console .console-thumb, .search .console-thumb, .selected .console-thumb {
   max-width: 200px; }
-
-#filter-builder .builder {
-  max-width: 300px; }
 
 #gallery-code pre {
   width: 100%; }

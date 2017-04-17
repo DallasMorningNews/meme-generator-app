@@ -9,12 +9,23 @@ var uploadFormData = new FormData();
 
 // Display the last image uploaded
 function displayLastSubmission(data) {
-  setTimeout(() => {
-    $('#upload-console').prepend(`
-      <div class='console-thumb'>
-        <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>
-      </div>`);
-  }, 7000);
+  const timer = setInterval(() => {
+    $.ajax({
+      url: `https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg`,
+      type: 'HEAD',
+      error: function () {
+        console.log('Image isn\'t ready yet');
+      },
+      success: function () {
+        console.log('Image is ready!');
+        $('#upload-console').prepend(`
+          <div class='console-thumb'>
+          <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>
+          </div>`);
+        clearInterval(timer);
+      },
+    });
+  }, 1000);
 }
 
 // ATTACH IMAGE TO FORM UPLOAD
@@ -44,6 +55,11 @@ $('#btn-upload-form').click(() => {
       data: uploadFormData,
       processData: false,
       contentType: false,
+      error: (responseObj) => {
+        console.log('ERROR', responseObj);
+        $('#upload-form').trigger('reset');
+        uploadFormData = new FormData();
+      },
       success: (responseObj) => {
         console.log('success', responseObj);
         $('#upload-form').trigger('reset');
@@ -84,39 +100,67 @@ $('#btn-create-search').on('click', function generic(event) {
   });
 });
 
+// COUNT INTRO CHARACTERS FOR TWEET
+var introTooLong = false;
+
+$('#intro-input').on('keyup', function () {
+  const warningLength = 130;
+  const alertLength = 140;
+  const introLength = $(this).val().length;
+  $('.char-remaining').text(alertLength - introLength);
+  if (introLength < warningLength && introLength <= alertLength) {
+    $(this).removeClass('lengthAlert');
+    $(this).removeClass('lengthWarning');
+  }
+  if (introLength > warningLength && introLength <= alertLength) {
+    $(this).removeClass('lengthAlert');
+    $(this).addClass('lengthWarning');
+  }
+  if (introLength > alertLength) {
+    $(this).removeClass('lengthWarning');
+    $(this).addClass('lengthAlert');
+    introTooLong = true;
+  }
+  console.log();
+});
+
 // SUBMIT FORM TO CREATE BUILDER
 $('#btn-create-builder').click((event) => {
-  event.preventDefault();
-  // Check for empty thumbnails and empty fields...
-  const selectedBuilderImages = [];
-  $('#page-images img').each(function generic() {
-    selectedBuilderImages.push($(this).attr('imageID'));
-  });
-  let formData = new FormData();
-  formData.append('head', $("#builder-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
-  formData.append('intro', $("#builder-inputs input[name='intro']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
-  formData.append('desk', $("#builder-inputs input[name='desk']").val());
-  formData.append('author', $("#builder-inputs input[name='author']").val());
-  formData.append('tags', $("#builder-inputs input[name='tags']").val());
-  formData.append('images', selectedBuilderImages);
+  if (!introTooLong){
+    event.preventDefault();
+    // Check for empty thumbnails and empty fields...
+    const selectedBuilderImages = [];
+    $('#page-images img').each(function generic() {
+      selectedBuilderImages.push($(this).attr('imageID'));
+    });
+    let formData = new FormData();
+    formData.append('head', $("#builder-inputs input[name='head']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
+    formData.append('intro', $("#builder-inputs input[name='intro']").val().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'));
+    formData.append('desk', $("#builder-inputs input[name='desk']").val());
+    formData.append('author', $("#builder-inputs input[name='author']").val());
+    formData.append('tags', $("#builder-inputs input[name='tags']").val());
+    formData.append('images', selectedBuilderImages);
 
-  $.ajax({
-    url: '/meme-generator/admin/create-builder',
-    type: 'post',
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: (responseObj) => {
-      console.log(responseObj);
-      formData = new FormData();
-      $('#page-images').empty();
-      $('#builder-inputs input').val('');
-      // BuilderURL
-      const baseURL = 'http://localhost:4000/meme-generator/builder/';
-      const builderLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
-      $('#builder-url').append(builderLink);
-    },
-  });
+    $.ajax({
+      url: '/meme-generator/admin/create-builder',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: (responseObj) => {
+        console.log(responseObj);
+        formData = new FormData();
+        $('#page-images').empty();
+        $('#builder-inputs input').val('');
+        // BuilderURL
+        const baseURL = 'http://localhost:4000/meme-generator/builder/';
+        const builderLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
+        $('#builder-url').append(builderLink);
+      },
+    });
+  } else {
+    alert("You're intro text is too long.");
+  }
 });
 
 
@@ -166,18 +210,33 @@ function displayMemeThumbs(data) {
       $(this).parent().find('.reject-button').show();
     }
   });
-  // Reject the memes
-  $('.reject-button').click(function () {
-    const memeID = $(this).parent().attr('imageid');
-    console.log(memeID);
+
+  // REJECT MEMES WITH INITIAL WARNING
+  let confirmed = false;
+  function deleteMeme(memeID) {
+    console.log('Deleting meme', memeID);
     $.ajax({
       url: `/meme-generator/admin/delete/memes/${memeID}`,
       type: 'get',
       success: (msg) => {
         console.log(msg);
-        $(this).parent().remove();
+        $(`.meme-thumb[imageid=${memeID}]`).remove();
       },
     });
+  }
+
+  // Reject the memes
+  $('.reject-button').click(function () {
+    // if they want to delete it
+    if (confirmed) {
+      deleteMeme($(this).parent().attr('imageid'));
+    } else {
+      // Sets confirmed to true or false based on response
+      confirmed = confirm('Are you sure you want to delete this meme? ');
+      if (confirmed) {
+        deleteMeme($(this).parent().attr('imageid'));
+      }
+    }
   });
 }
 
@@ -251,6 +310,7 @@ $('#create-gallery .btn').click(function generic() {
         success: (builders) => {
           displayBuilders(builders).then(() => {
             $('#filter-builder .builder').click(function () {
+              $('.publish').empty();
               const builderID = $(this).data('builderid');
               console.log(builderID);
               $.ajax({
@@ -329,6 +389,7 @@ $('#btn-publish').click(() => {
 // //////////////////////////////////////
 
 $(document).ready(() => {
+
   let currentDestination = 'upload-meme';
   $(`#${currentDestination}`).show();
   // //////////////////////////////////////
@@ -360,4 +421,6 @@ $(document).ready(() => {
   // $('.theme').click(() => {
   //   $('.sideNav #upload-image').slideDown();
   // });
+
+    $('.printShare').hide();
 });

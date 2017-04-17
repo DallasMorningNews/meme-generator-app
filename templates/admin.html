@@ -123,9 +123,10 @@
 	<!-- UPLOAD IMAGE SECTION -->
 	<section class="controls" id="upload-meme">
 		<h3>Upload a meme image</h3>
+    <p>Click 'choose file' and select the image you'd like to upload. Enter some keyword tags to help people find it in the future. Click upload to send it to the generator for future use. The 'Session uploads' window will update when the image is available for memes.</p>
 		<form enctype="multipart/form-data" id="upload-form">
 			<input name="name" type="file" id="upload-input"><br/>
-			<input type="text" name="tags" placeholder="Tags" /><br/></br/>
+			<input type="text" name="tags" placeholder="Searchable keywords" /><br/></br/>
 			<!-- <input type="submit" value="Upload"/> -->
 			<div class="btn int-btn" id="btn-upload-form" data-target="upload-form">Upload</div>
 		</form>
@@ -137,7 +138,7 @@
 	<section class="controls" id="create-builder">
 			<h3>Create a Meme Maker</h3>
 			<p class="subhed">Search for background images</p>
-				<input type="text" name="search-tags" placeholder="Tags" /></br>
+				<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
 				</br/>
 				<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
 			<h4>Search results</h4>
@@ -147,7 +148,8 @@
 		<div class="component" id="builder-inputs">
 			<p class="subhed">Build a Meme Maker</p>
 				<input type="text" name="head" placeholder="Headline"/></br>
-				<input type="text" name="intro" placeholder="Intro"/></br>
+				<input id="intro-input" type="text" name="intro" placeholder="Intro"/></br>
+        <p>Characters remaining: <span class="char-remaining">140</span></p>
 				<input type="text" name="desk" placeholder="Desk"/></br>
 				<input type="text" name="author" placeholder="Author"/></br>
 				<input type="text" name="tags" placeholder="Tags"/></br>

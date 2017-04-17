@@ -55,6 +55,7 @@ module.exports = function (app) {
     console.log(imageObj);
     req.models.images.create(imageObj, (err) => {
       if (err) {
+        console.log(err);
         // Send error
         res.send(err);
       } else {
