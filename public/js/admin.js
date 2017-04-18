@@ -1,5 +1,10 @@
 /* global $:true,document:true,_:true*/
 Rainbow.defer = true;
+
+
+
+
+
 // //////////////////////////////////////////////
 //    I. UPLOAD IMAGES
 // //////////////////////////////////////////////
@@ -12,7 +17,8 @@ function displayLastSubmission(data) {
   const timer = setInterval(() => {
     $.ajax({
       url: `https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg`,
-      type: 'HEAD',
+      type: 'GET',
+      dataType: 'image/jpg',
       error: function () {
         console.log('Image isn\'t ready yet');
       },
@@ -28,6 +34,13 @@ function displayLastSubmission(data) {
   }, 1000);
 }
 
+function logFormData(form) {
+  // Display the key/value pairs
+  for (const pair of form.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
+  }
+}
+
 // ATTACH IMAGE TO FORM UPLOAD
 $('#upload-input').on('change', function generic() {
   const files = $(this).get(0).files;
@@ -39,16 +52,13 @@ $('#upload-input').on('change', function generic() {
       uploadFormData.append('image', file, file.name);
     }
   }
-  console.log(uploadFormData);
+  logFormData(uploadFormData);
 });
 
 $('#btn-upload-form').click(() => {
   if ($("input[name='tags']").val()) {
     uploadFormData.append('tags', $("input[name='tags']").val());
-    // Display the key/value pairs
-    for (const pair of uploadFormData.entries()) {
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
+    logFormData(uploadFormData);
     $.ajax({
       url: '/meme-generator/admin/upload',
       type: 'post',
@@ -61,9 +71,9 @@ $('#btn-upload-form').click(() => {
         uploadFormData = new FormData();
       },
       success: (responseObj) => {
-        console.log('success', responseObj);
-        $('#upload-form').trigger('reset');
+        console.log('SUCCESS', responseObj);
         displayLastSubmission(responseObj);
+        $('#upload-form').trigger('reset');
         uploadFormData = new FormData();
       },
     });
@@ -71,6 +81,12 @@ $('#btn-upload-form').click(() => {
     console.log('You need to enter some tags for this image.');
   }
 });
+
+
+
+
+
+
 
 $('#upload-form').on('submit', (event) => {
   event.preventDefault();
@@ -165,6 +181,10 @@ $('#btn-create-builder').click((event) => {
 
 
 
+
+
+
+
 // //////////////////////////////////////////////
 //    DEAL WITH THUMBS
 // //////////////////////////////////////////////
@@ -239,6 +259,11 @@ function displayMemeThumbs(data) {
     }
   });
 }
+
+
+
+
+
 
 
 // //////////////////////////////////////////////
@@ -353,6 +378,11 @@ $('#create-gallery .btn').click(function generic() {
   $(`#${targetID}`).show();
 });
 
+
+
+
+
+
 // //////////////////////////////////////
 //    IV Publish gallery page
 // //////////////////////////////////////
@@ -381,6 +411,11 @@ $('#btn-publish').click(() => {
   $('#code-snippet').text(builderCode);
   Rainbow.color();
 });
+
+
+
+
+
 
 // //////////////////////////////////////
 // //////////////////////////////////////
@@ -414,9 +449,9 @@ $(document).ready(() => {
     revert: true,
   });
 
-  $('pre code').each((i, block) => {
-    hljs.highlightBlock(block);
-  });
+  // $('pre code').each((i, block) => {
+  //   hljs.highlightBlock(block);
+  // });
 
   // $('.theme').click(() => {
   //   $('.sideNav #upload-image').slideDown();
