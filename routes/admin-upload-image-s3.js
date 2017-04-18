@@ -15,7 +15,7 @@ module.exports = function (app) {
   const s3 = new AWS.S3();
 
   // Payload for database
-  const imageObj = {};
+  let imageObj = {};
 
   // Our bucket
   const bucketName = "dmnmemebase";
@@ -32,6 +32,7 @@ module.exports = function (app) {
       },
       contentType: multerS3.AUTO_CONTENT_TYPE,
       key: function (req, file, cb) {
+        imageObj = {};
         const now = new Date();
         const timeID = Number(now);
         const newName = `${timeID}.jpg`;
@@ -52,14 +53,18 @@ module.exports = function (app) {
 
   app.post('/admin/upload', upload.single('image'), (req, res, next) => {
     imageObj.tags = req.body.tags;
+    console.log('INCOMING...');
     console.log(imageObj);
     req.models.images.create(imageObj, (err) => {
       if (err) {
+        console.log('ERROR...');
         console.log(err);
         // Send error
         res.send(err);
       } else {
+        console.log('SUCCESS...');
         console.log('Database updated successfully');
+        console.log(imageObj);
         res.send(imageObj);
       }
     });
