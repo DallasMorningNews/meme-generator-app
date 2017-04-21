@@ -1,5 +1,5 @@
 {%extends 'base.html'%} {%import 'partials/img.html' as img%} {%block custom_meta%}
-<meta content="dallasnews,memes,{{keywords|join(',')}}" name="keywords" />
+<meta content="{{keywords|join(',')}}" name="keywords" />
 
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -20,7 +20,7 @@
 
 <meta name="liveFyreID" content="{{page.date}}" />
 
-<meta name="parsely-page" id='parsely-page' content='{"title": "{{page.head}}", "link": "http://apps.dallasnews.com/meme-generator/builder/{{page.id}}", "image_url": "{{imgURL}}", "type": "post", "post_id": "{{page.date}}", "pub_date": "{{publishDate}}", "section": "{{page.desk}}", "author": ["{{page.author}}"], "tags": ["dallasnews,memes,{{keywords|join('
+<meta name="parsely-page" id='parsely-page' content='{"title": "{{page.head}}", "link": "http://apps.dallasnews.com/meme-generator/builder/{{page.id}}", "image_url": "{{imgURL}}", "type": "post", "post_id": "{{page.date}}", "pub_date": "{{publishDate}}", "section": "{{page.desk}}", "author": ["{{page.author}}"], "tags": ["{{keywords|join('
 				"," ')|safe}}"]}' />
 
 <meta property="og:keywords" content="{{keywords|join(',')}}" />
@@ -159,8 +159,8 @@
 				<img class="minus" src="../images/_minus.svg" height="18px" />Text size<img class="plus" src="../images/_plus.svg" height="18px" /></div>
 
 			<div id="meme-container">
-				<input id="topLineText" type="text" placeholder="Top line">
-				<input id="bottomLineText" type="text" placeholder="Bottom line">
+				<input id="topLineText" type="text" placeholder="Top text">
+				<input id="bottomLineText" type="text" placeholder="Bottom text">
 				<canvas id="canvas"></canvas>
 			</div>
 

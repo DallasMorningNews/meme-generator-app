@@ -32,6 +32,9 @@ module.exports = (app) => {
 
       // Build authors
       meta.authors = page[0].author;
+      meta.hashtag = page[0].hashtag;
+      meta.mention = page[0].mention;
+      meta.twitter = page[0].twitter;
       meta.shareText = page[0].intro;
       meta.tweetText = page[0].intro;
       meta.pageTitle = page[0].head;

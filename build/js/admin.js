@@ -183,7 +183,7 @@ $('#btn-create-builder').click((event) => {
         $('#page-images').empty();
         $('#builder-inputs input').val('');
         // BuilderURL
-        const baseURL = 'http://localhost:4000/meme-generator/builder/';
+        const baseURL = 'http://apps.dallasnews.com/meme-generator/builder/';
         const builderLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
         $('#builder-url').append(builderLink);
       },

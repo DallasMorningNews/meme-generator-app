@@ -3,7 +3,7 @@ $(document).ready(() => {
 
   console.log('Version 4/21 14:15');
 
-  
+
   // console.log('Ready');
   const imagesArray = images.split(',');
 
@@ -32,7 +32,7 @@ $(document).ready(() => {
 
   // Default text for meme is blank
   let topText = '';
-  let bottomText = '';
+  let bottomText = 'BOTTOM TEXT';
 
   // LOAD THUMB IMAGE
   $('#thumbsBox img').click(function () {
