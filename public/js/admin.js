@@ -439,6 +439,8 @@ $('#btn-publish').click(() => {
 
 $(document).ready(() => {
 
+  console.log('Version 4/21 14:15');
+
   let currentDestination = 'upload-meme';
   $(`#${currentDestination}`).show();
   // //////////////////////////////////////
