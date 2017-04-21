@@ -123,7 +123,10 @@
 	<!-- UPLOAD IMAGE SECTION -->
 	<section class="controls" id="upload-meme">
 		<h3>Upload a meme image</h3>
-    <p>Click 'choose file' and select the image you'd like to upload. Enter some keyword tags to help people find it in the future. Click upload to send it to the generator for future use. The 'Session uploads' window will update when the image is available for memes.</p>
+    <p>1. Click 'choose file' and select the image you'd like to upload.</br>
+       2. Enter some keyword tags to help people find it in the future.</br>
+       3. Click upload to send it to the generator for future use.<br/>
+       4. The 'Session uploads' window will update when the image is available for memes.</p>
 		<form enctype="multipart/form-data" id="upload-form">
 			<input name="name" type="file" id="upload-input"><br/>
 			<input type="text" name="tags" placeholder="Searchable keywords" /><br/></br/>
@@ -138,15 +141,18 @@
 	<section class="controls" id="create-builder">
 			<h3>Create a Meme Maker</h3>
 			<p class="subhed">Search for background images</p>
+        <p>Enter keywords and hit the 'search' button to find images.</p>
 				<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
 				</br/>
 				<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
 			<h4>Search results</h4>
+      <p>Click on an image below to add it to a page.</p>
 			<div class="console search" id="image-thumbs"></div>
 			<h4>Selected images for page</h4>
 			<div class="console selected" id="page-images"></div>
 		<div class="component" id="builder-inputs">
 			<p class="subhed">Build a Meme Maker</p>
+      <p>Fill out teh required fields.</p>
 			<input class="required" id="head-input" type="text" name="head" placeholder="Headline (Also default share text)"/></br>
       <p>Characters remaining: <span class="char-remaining">140</span></p>
 			<input class="required" type="text" name="intro" placeholder="Intro"/></br>
@@ -161,6 +167,7 @@
 		</div>
     <div class="component">
       <p class="subhed">URL to your Meme Maker</p>
+      <p>This is the URL to your Meme Maker page.</p>
       <div class='console url-box' id="builder-url"></div>
     </div>
 	</section>
