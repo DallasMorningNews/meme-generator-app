@@ -11,7 +11,7 @@ module.exports = (app) => {
 
     req.models.builders.find({ id: pageid }, (err, page) => {
       if (err) throw err;
-      // console.log(page);
+      // console.log(page[0]);
       // console.log(`${page.length} pages found.`);
       // console.log(`Head: ${page[0].head}`);
       meta.page = page[0];
@@ -32,9 +32,9 @@ module.exports = (app) => {
 
       // Build authors
       meta.authors = page[0].author;
-      meta.hashtag = page[0].hashtag;
-      meta.mention = page[0].mention;
-      meta.twitter = page[0].twitter;
+      meta.page.hashtag = page[0].hashtag;
+      meta.page.mention = page[0].mention;
+      meta.page.twitter = page[0].twitter;
       meta.shareText = page[0].intro;
       meta.tweetText = page[0].intro;
       meta.pageTitle = page[0].head;
@@ -46,12 +46,12 @@ module.exports = (app) => {
       req.models.memes.find({ builder: page[0].id }).limit(1).run((err, firstMeme) => {
         if (err) { console.log(err); }
         if (firstMeme[0]) {
-          console.log('There is a first meme');
+          // console.log('There is a first meme');
           meta.imgURL = `https://dmnmeme.s3.amazonaws.com/${firstMeme[0].date}.png`;
         } else {
-          console.log('NO first meme available');
+          // console.log('NO first meme available');
         }
-        console.log(meta);
+        // console.log(meta);
         res.render('builder.html', meta);
       });
     });

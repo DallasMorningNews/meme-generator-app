@@ -12,6 +12,9 @@ module.exports = function(db, cb){
 		intro: String,
 		desk: String,
 		images: String,
+		hashtag: String,
+		mention: String,
+		twitter: String,
 	});
 
 	return cb();

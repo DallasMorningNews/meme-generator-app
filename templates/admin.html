@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <meta content="{{shareText}}" name="description" />
-<title>{{pageTitle}}</title>
+<title>Dallasnews Meme Generator</title>
 <meta property="og:url" content="{{url}}" />
 <meta property="og:title" content="{{shareTitle}}" />
 <meta property="og:description" content="{{shareText}}" name="description" />
@@ -154,15 +154,15 @@
 		<div class="component" id="builder-inputs">
 			<p class="subhed">Build a Meme Maker</p>
       <p class="instructions">Fill out the required fields.</p>
+      <input class="optional" type="text" name="hashtag" placeholder="#hashtags (# required)"/></br>
+      <input class="optional" type="text" name="mention" placeholder="@mentions (@ required)"/></br>
+      <input class="required" id="section-input" type="text" name="twitter" placeholder="@section (@ required)"/></br>
 			<input class="required" id="head-input" type="text" name="head" placeholder="Headline (Also default share text)"/></br>
       <p>Characters remaining: <span class="char-remaining">140</span></p>
 			<input class="required" type="text" name="intro" placeholder="Intro"/></br>
 			<input class="required" type="text" name="desk" placeholder="Desk"/></br>
 			<input class="required" type="text" name="author" placeholder="Author"/></br>
 			<input class="required" type="text" name="tags" placeholder="Tags, tags, tags"/></br>
-      <input class="required" type="text" name="twitter" placeholder="Twittera account (NO @)"/></br>
-			<input class="optional" type="text" name="hashtag" placeholder="#hastags (# required)"/></br>
-			<input class="optional" type="text" name="mention" placeholder="@mentions (@ required)"/></br>
 			</br>
 			<div class="btn int-btn" id="btn-create-builder" data-target="build-page">Create Meme Maker</div>
 		</div>

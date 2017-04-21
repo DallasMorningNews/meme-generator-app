@@ -123,33 +123,75 @@ function validate(thisDiv) {
   }
 }
 
-$('#builder-inputs input').on('keyup', function () {
-  validate($(this));
-});
+function replaceHashtags(str) {
+  return str.replace(/#+/g, '%23');
+}
+function replaceMentions(str) {
+  return str.replace(/@+/g, '%40');
+}
+function stripMentions(str) {
+  return str.replace(/@+/g, '');
+}
+
 
 // COUNT HEADLINE CHARACTERS FOR TWEET
 var headTooLong = false;
+$('.char-remaining').text(140 - 88);
 
-$('#head-input').on('keyup', function () {
-  const warningLength = 130;
-  const alertLength = 140;
-  const introLength = $(this).val().length;
-  $('.char-remaining').text(alertLength - introLength);
-  if (introLength < warningLength && introLength <= alertLength) {
-    $(this).removeClass('lengthAlert');
-    $(this).removeClass('lengthWarning');
+function checkAllLengths(){
+  const maxTwitterCharacters = 140;
+  const urlLength = 23; // Takes into account Twitter's shortner
+  const mandatory = urlLength;
+  const hashtagLength = $("#builder-inputs input[name='hashtag']").val().length;
+  const mentionLength = $("#builder-inputs input[name='mention']").val().length;
+  const sectionLength = $("#builder-inputs input[name='twitter']").val().length;
+  const headLength = $('#head-input').val().length;
+  const charactersTaken = mandatory + hashtagLength + mentionLength + headLength + sectionLength;
+  const warningLength = maxTwitterCharacters - 10;
+  const alertLength = maxTwitterCharacters - 5;
+  $('.char-remaining').text(maxTwitterCharacters - charactersTaken);
+  if (charactersTaken < warningLength) {
+    $('#head-input').removeClass('lengthAlert');
+    $('#head-input').removeClass('lengthWarning');
+    headTooLong = false;
   }
-  if (introLength > warningLength && introLength <= alertLength) {
-    $(this).removeClass('lengthAlert');
-    $(this).addClass('lengthWarning');
+  if (charactersTaken > warningLength && charactersTaken <= alertLength) {
+    $('#head-input').removeClass('lengthAlert');
+    $('#head-input').addClass('lengthWarning');
+    headTooLong = false;
   }
-  if (introLength > alertLength) {
-    $(this).removeClass('lengthWarning');
-    $(this).addClass('lengthAlert');
+  if (charactersTaken > maxTwitterCharacters) {
+    $('#head-input').removeClass('lengthWarning');
+    $('#head-input').addClass('lengthAlert');
     headTooLong = true;
   }
-  console.log();
+}
+
+$('#builder-inputs input').on('keyup', function() {
+  if ($(this).hasClass('optional')) {
+    checkAllLengths();
+  } else if ($(this).attr('id') === 'head-input') {
+    validate($(this));
+    checkAllLengths();
+  } else if ($(this).attr('id') === 'section-input') {
+    validate($(this));
+    checkAllLengths();
+  } else {
+    validate($(this));
+  }
 });
+
+// $('#builder-inputs .optional').on('keyup', () => {
+//   checkAllLengths();
+// });
+//
+// $('#builder-inputs .required').on('keyup', function () {
+//   validate($(this));
+// });
+// $('#head-input').on('keyup', () => {
+//   checkAllLengths();
+// });
+//
 
 // SUBMIT FORM TO CREATE BUILDER
 $('#btn-create-builder').click((event) => {
@@ -166,9 +208,9 @@ $('#btn-create-builder').click((event) => {
     formData.append('desk', $("#builder-inputs input[name='desk']").val());
     formData.append('author', $("#builder-inputs input[name='author']").val());
     formData.append('tags', $("#builder-inputs input[name='tags']").val());
-    formData.append('twitter', $("#builder-inputs input[name='twitter']").val());
-    formData.append('hashtag', $("#builder-inputs input[name='hashtag']").val());
-    formData.append('mention', $("#builder-inputs input[name='mention']").val());
+    formData.append('twitter', stripMentions($("#builder-inputs input[name='twitter']").val()));
+    formData.append('hashtag', replaceHashtags($("#builder-inputs input[name='hashtag']").val()));
+    formData.append('mention', replaceMentions($("#builder-inputs input[name='mention']").val()));
     formData.append('images', selectedBuilderImages);
 
     $.ajax({
@@ -189,7 +231,7 @@ $('#btn-create-builder').click((event) => {
       },
     });
   } else {
-    alert("You're intro text is too long.");
+    alert("You're headline is too long.");
   }
 });
 

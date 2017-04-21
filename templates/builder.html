@@ -15,8 +15,8 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@{{page.twitter}}" />
-<meta name="twitter:creator" content="@{{page.twitter}}" />
+<meta name="twitter:site" content="{{page.twitter}}" />
+<meta name="twitter:creator" content="{{page.twitter}}" />
 
 <meta name="liveFyreID" content="{{page.date}}" />
 
@@ -102,7 +102,6 @@
 
 <aside id="dataStamp">
 	<span class="pageID">{{page.id}}</span>
-	<span class="pageName">{{page.name}}</span>
 	<span class="pageTags">{{page.tags}}</span>
 	<span class="pageDate">{{page.date}}</span>
 	<span class="pageAuthor">{{page.author}}</span>
@@ -211,7 +210,7 @@
       it won't self-destruct, but it is cleaner
     -->
 
-		<p class="twitter-tag">Follow writer name on Twitter at <a href="http://www.twitter.com/{{page.desk}}">@{{page.desk}}.</a></p>
+		<p class="twitter-tag">Follow writer name on Twitter at <a href="http://www.twitter.com/{{page.desk}}">{{page.twitter}}.</a></p>
 
 		<!-- <section class="credits clearfix">
 			<p><strong>Author:</strong> <a href="mailto:emailaddress">Name</a></p>
@@ -256,15 +255,15 @@
 <script type="text/javascript"></script>
 {%endblock%} {%block custom_social_meta%}
 <script type="text/javascript">
-	var storyTitle = "{{page.head}}", // headline in tweet card
+	var storyTitle = "{{page.head}} {{page.hashtag}} {{page.mention}}", // headline in tweet card
 		storyURL = "http://apps.dallasnews.com/meme-generator/builder/{{page.id}}",
-		leadText = "{{page.intro}} {{page.hashtag}} {{page.mention}}", //description in tweet card
+		leadText = "{{page.intro}}", //description in tweet card
 		storyIMG = "{{imgURL}}",
 		storyAuthor = "{{page.author}}",
 		twitterTag = "{{page.twitter}}",
 		comments = true,
 		share = true;
-	OAS_sitepage = 'www.dallasnews.com/{{page.desk}}/{{page.section}}/';
+	OAS_sitepage = 'apps.dallasnews.com/{{page.desk}}/{{page.section}}/';
 
 	var images = "{{page.images}}";
 	var epochDate = "{{page.date}}";

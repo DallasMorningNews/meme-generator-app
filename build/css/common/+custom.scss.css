@@ -138,8 +138,9 @@ input[type="text"]:focus {
   margin-bottom: 0; }
 
 .subhed {
-  font-size: 1.75em;
-  color: #b5b5b5; }
+  font-size: 1.75em !important;
+  color: #b5b5b5;
+  margin-bottom: 10px !important; }
 
 .console {
   margin-bottom: 20px;
