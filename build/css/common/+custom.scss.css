@@ -46,6 +46,12 @@ input[type="text"]:focus {
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696; }
 
+.required {
+  border-left: 5px solid #e34e36 !important; }
+
+.completed {
+  border-left: 5px solid #52b033 !important; }
+
 .lengthWarning {
   color: #ff8f24;
   font-weight: 700; }
@@ -391,4 +397,7 @@ canvas {
   margin-bottom: 20px; }
 
 #meme-thumbs-publish .reject-button {
+  display: none !important; }
+
+.printShare, .emailShare {
   display: none !important; }

@@ -147,14 +147,17 @@
 			<div class="console selected" id="page-images"></div>
 		<div class="component" id="builder-inputs">
 			<p class="subhed">Build a Meme Maker</p>
-				<input type="text" name="head" placeholder="Headline"/></br>
-				<input id="intro-input" type="text" name="intro" placeholder="Intro"/></br>
-        <p>Characters remaining: <span class="char-remaining">140</span></p>
-				<input type="text" name="desk" placeholder="Desk"/></br>
-				<input type="text" name="author" placeholder="Author"/></br>
-				<input type="text" name="tags" placeholder="Tags"/></br>
+			<input class="required" id="head-input" type="text" name="head" placeholder="Headline (Also default share text)"/></br>
+      <p>Characters remaining: <span class="char-remaining">140</span></p>
+			<input class="required" type="text" name="intro" placeholder="Intro"/></br>
+			<input class="required" type="text" name="desk" placeholder="Desk"/></br>
+			<input class="required" type="text" name="author" placeholder="Author"/></br>
+			<input class="required" type="text" name="tags" placeholder="Tags, tags, tags"/></br>
+      <input class="required" type="text" name="twitter" placeholder="@homeTwitterAccount (@ required)"/></br>
+			<input class="optional" type="text" name="hashtag" placeholder="#hastags (# required)"/></br>
+			<input class="optional" type="text" name="mention" placeholder="@mentions (@ required)"/></br>
 			</br>
-				<div class="btn int-btn" id="btn-create-builder" data-target="build-page">Create Meme Maker</div>
+			<div class="btn int-btn" id="btn-create-builder" data-target="build-page">Create Meme Maker</div>
 		</div>
     <div class="component">
       <p class="subhed">URL to your Meme Maker</p>

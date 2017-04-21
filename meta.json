@@ -1,5 +1,5 @@
 {
-  "id": "95720087698",
+  "id": "<built in node>",
   "name": "meme generator",
   "pageTitle": "Meme Generator",
   "shareTitle": "Meme Generator",
@@ -10,7 +10,7 @@
   "url": "http://apps.dallasnews.com/meme-generator/builder",
   "authors": "<built in node>",
   "desk": "<built in node>",
-  "section": "<Section>",
+  "section": "memes",
   "keywords": [
     "interactives",
     "dallas",
@@ -25,5 +25,5 @@
   "imgHeight": "<fixed>",
   "sectionTwitter": "<handle - w/out \"@\">",
   "authorTwitter": "<handle - w/out \"@\">",
-  "authorFBProfile": "<Url for author FB profile. Leave empty string if none>"
+  "authorFBProfile": ""
 }

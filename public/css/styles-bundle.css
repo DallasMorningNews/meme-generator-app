@@ -44,7 +44,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
   line-height: 1;
   z-index: 0;
-  position: relative; }
+  position: relative;
+  min-height: 100%;
+  display: block;
+  height: auto !important;
+  padding-bottom: 200px !important; }
+  @media (max-width: 650px) {
+    body {
+      padding-bottom: 225px !important; } }
+  @media (max-width: 450px) {
+    body {
+      padding-bottom: 250px !important; } }
 
 ol, ul {
   list-style: none; }
@@ -957,6 +967,12 @@ input[type="text"]:focus {
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696; }
 
+.required {
+  border-left: 5px solid #e34e36 !important; }
+
+.completed {
+  border-left: 5px solid #52b033 !important; }
+
 .lengthWarning {
   color: #ff8f24;
   font-weight: 700; }
@@ -1302,6 +1318,9 @@ canvas {
   margin-bottom: 20px; }
 
 #meme-thumbs-publish .reject-button {
+  display: none !important; }
+
+.printShare, .emailShare {
   display: none !important; }
 
 @keyframes fade-in {

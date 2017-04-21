@@ -60,6 +60,12 @@ input[type="text"]:focus {
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696;
 }
+.required {
+  border-left: 5px solid $chartRed !important;
+}
+.completed {
+  border-left: 5px solid $chartGreen !important;
+}
 .lengthWarning{
   color: $chartOrange;
   font-weight: 700;
@@ -462,4 +468,8 @@ canvas {
 
 #meme-thumbs-publish .reject-button {
     display: none !important;
+}
+
+.printShare, .emailShare{
+  display: none !important;
 }

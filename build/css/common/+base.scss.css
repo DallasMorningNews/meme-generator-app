@@ -44,7 +44,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
   line-height: 1;
   z-index: 0;
-  position: relative; }
+  position: relative;
+  min-height: 100%;
+  display: block;
+  height: auto !important;
+  padding-bottom: 200px !important; }
+  @media (max-width: 650px) {
+    body {
+      padding-bottom: 225px !important; } }
+  @media (max-width: 450px) {
+    body {
+      padding-bottom: 250px !important; } }
 
 ol, ul {
   list-style: none; }

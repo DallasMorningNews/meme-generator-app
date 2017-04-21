@@ -192,7 +192,7 @@ $(document).ready(() => {
           // Facebook share
           FB.ui({
             method: 'feed',
-            name: `${topText} ${bottomText}`,
+            name: $('.pageHead').text(),
             link: window.location.href,
             // caption: 'Use our meme generator to create your own!',
             picture: storyIMG,

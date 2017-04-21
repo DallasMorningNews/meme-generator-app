@@ -48,6 +48,16 @@ body {
   line-height: 1;
   z-index: 0;
   position: relative;
+  min-height: 100%;
+  display: block;
+  height: auto !important;
+  padding-bottom: 200px !important;
+  @media (max-width: 650px) {
+      padding-bottom: 225px !important;
+  }
+  @media (max-width: 450px) {
+      padding-bottom: 250px !important;
+  }
 }
 ol, ul {
   list-style: none;

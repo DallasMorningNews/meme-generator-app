@@ -1,10 +1,6 @@
 /* global $:true,document:true,_:true*/
 Rainbow.defer = true;
 
-
-
-
-
 // //////////////////////////////////////////////
 //    I. UPLOAD IMAGES
 // //////////////////////////////////////////////
@@ -111,10 +107,30 @@ $('#btn-create-search').on('click', function generic(event) {
   });
 });
 
-// COUNT INTRO CHARACTERS FOR TWEET
-var introTooLong = false;
+// VALIDATE BUILDER INPUTS
+function validate(thisDiv) {
+  if (thisDiv.hasClass('optional')) {
+    console.log('optional');
+  } else {
+    console.log(thisDiv.val());
+    if (thisDiv.val().length) {
+      thisDiv.addClass('completed');
+      thisDiv.removeClass('required');
+    } else {
+      thisDiv.addClass('required');
+      thisDiv.removeClass('completed');
+    }
+  }
+}
 
-$('#intro-input').on('keyup', function () {
+$('#builder-inputs input').on('keyup', function () {
+  validate($(this));
+});
+
+// COUNT HEADLINE CHARACTERS FOR TWEET
+var headTooLong = false;
+
+$('#head-input').on('keyup', function () {
   const warningLength = 130;
   const alertLength = 140;
   const introLength = $(this).val().length;
@@ -130,14 +146,14 @@ $('#intro-input').on('keyup', function () {
   if (introLength > alertLength) {
     $(this).removeClass('lengthWarning');
     $(this).addClass('lengthAlert');
-    introTooLong = true;
+    headTooLong = true;
   }
   console.log();
 });
 
 // SUBMIT FORM TO CREATE BUILDER
 $('#btn-create-builder').click((event) => {
-  if (!introTooLong){
+  if (!headTooLong){
     event.preventDefault();
     // Check for empty thumbnails and empty fields...
     const selectedBuilderImages = [];
@@ -150,6 +166,9 @@ $('#btn-create-builder').click((event) => {
     formData.append('desk', $("#builder-inputs input[name='desk']").val());
     formData.append('author', $("#builder-inputs input[name='author']").val());
     formData.append('tags', $("#builder-inputs input[name='tags']").val());
+    formData.append('twitter', $("#builder-inputs input[name='twitter']").val());
+    formData.append('hashtag', $("#builder-inputs input[name='hashtag']").val());
+    formData.append('mention', $("#builder-inputs input[name='mention']").val());
     formData.append('images', selectedBuilderImages);
 
     $.ajax({

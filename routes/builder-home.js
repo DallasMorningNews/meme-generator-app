@@ -16,7 +16,7 @@ module.exports = (app) => {
       // console.log(`Head: ${page[0].head}`);
       meta.page = page[0];
 
-      // Append keywords from buiolder to meta.json's existing keywords.
+      // Append keywords from builder to meta.json's existing keywords.
       const keywords = page[0].tags.split(', ');
       for (const keyword of keywords){
         meta.keywords.push(keyword);
