@@ -1,5 +1,9 @@
 /* global $:true  document:true, d3:true, _:true*/
 $(document).ready(() => {
+
+  console.log('Version 4/21 14:15');
+
+  
   // console.log('Ready');
   const imagesArray = images.split(',');
 
