@@ -228,6 +228,7 @@ $('#btn-create-builder').click((event) => {
         const baseURL = 'http://apps.dallasnews.com/meme-generator/builder/';
         const builderLink = `<a href="${baseURL}${responseObj.id}" target="_blank">${baseURL}${responseObj.id}</a>`;
         $('#builder-url').append(builderLink);
+        alert('Remember, the first dank meme is your responsibility.');
       },
     });
   } else {
