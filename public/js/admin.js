@@ -15,22 +15,17 @@ var uploadFormData = new FormData();
 // Display the last image uploaded
 function displayLastSubmission(data) {
   const timer = setInterval(() => {
-    $.ajax({
-      url: `https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg`,
-      type: 'GET',
-      dataType: 'image/jpg',
-      error: function () {
-        console.log('Image isn\'t ready yet');
-      },
-      success: function () {
-        console.log('Image is ready!');
+    $.get(`https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg`)
+      .done(() => {
+        console.log('DONE image load');
         $('#upload-console').prepend(`
           <div class='console-thumb'>
           <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>
           </div>`);
         clearInterval(timer);
-      },
-    });
+      }).fail(() => {
+        console.log('FAILED image load');
+      });
   }, 1000);
 }
 
