@@ -227,14 +227,14 @@ $(document).ready(() => {
       ctx2.fillStyle = 'white';
 
       // Draw top text
-      ctx2.font = (topFontSize*.85)+'pt Impact';
+      ctx2.font = (topFontSize*.85) + 'pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif';
       ctx2.lineWidth = topStrokeSize*2;
       ctx2.textBaseline = 'top';
       ctx2.strokeText(topText, canvas.width / 2, 5);
       ctx2.fillText(topText, canvas.width / 2, 5);
 
       // Draw bottom text
-      ctx2.font = `${(bottomFontSize * 0.85)}pt Impact`;
+      ctx2.font = `${(bottomFontSize * 0.85)}pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif`;
       ctx2.lineWidth = bottomStrokeSize * 2;
       ctx2.textBaseline = 'bottom';
       ctx2.strokeText(bottomText, canvas.width / 2, canvas.height - 5);

@@ -961,6 +961,9 @@ input[type="text"] {
   transition: box-shadow 0.3s, border 0.3s;
   margin-top: 20px;
   width: 100%; }
+  @media screen and (max-width: 600px) {
+    input[type="text"] {
+      padding: 0px; } }
 
 input[type="text"]:focus {
   outline: none;
@@ -1160,7 +1163,7 @@ input[type=submit] {
   overflow-x: hidden; }
 
 #meme-container input[type=text] {
-  font-family: 'Impact', 'Gotham A', 'Gotham B', Arial, sans-serif;
+  font-family: 'Impact', 'Anton', 'Gotham A', 'Gotham B', Arial, sans-serif;
   font-size: 70px;
   width: 100%;
   background: none;
