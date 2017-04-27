@@ -220,7 +220,7 @@ $(document).ready(() => {
     image.onload = function () { //once loaded
       // Actually draw the image at 0,0 with width and height
 
-      const sizingRatio = 1200 / $('#meme-container').width();
+      const sizingRatio = 900 / $('#meme-container').width();
       console.info(topStrokeSize, bottomStrokeSize, sizingRatio);
 
       ctx2.drawImage(image, 0, 0, 1200, 630);
