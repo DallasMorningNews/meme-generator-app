@@ -219,6 +219,10 @@ $(document).ready(() => {
     image.setAttribute('crossOrigin', 'anonymous');
     image.onload = function () { //once loaded
       // Actually draw the image at 0,0 with width and height
+
+      const sizingRatio = 1200 / $('#meme-container').width();
+      console.info(topStrokeSize, bottomStrokeSize, sizingRatio);
+
       ctx2.drawImage(image, 0, 0, 1200, 630);
 
       ctx2.textAlign = 'center';
@@ -227,18 +231,18 @@ $(document).ready(() => {
       ctx2.fillStyle = 'white';
 
       // Draw top text
-      ctx2.font = (topFontSize*.85) + 'pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif';
-      ctx2.lineWidth = topStrokeSize*2;
+      ctx2.font = (topFontSize * sizingRatio) + 'pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif';
+      ctx2.lineWidth = Math.ceil(topStrokeSize * sizingRatio);
       ctx2.textBaseline = 'top';
-      ctx2.strokeText(topText, canvas.width / 2, 5);
       ctx2.fillText(topText, canvas.width / 2, 5);
+      ctx2.strokeText(topText, canvas.width / 2, 5);
 
       // Draw bottom text
-      ctx2.font = `${(bottomFontSize * 0.85)}pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif`;
-      ctx2.lineWidth = bottomStrokeSize * 2;
+      ctx2.font = `${(bottomFontSize * sizingRatio)}pt Impact, Anton, Gotham A, Gotham B, Arial, sans-serif`;
+      ctx2.lineWidth = Math.ceil(bottomStrokeSize * sizingRatio);
       ctx2.textBaseline = 'bottom';
-      ctx2.strokeText(bottomText, canvas.width / 2, canvas.height - 5);
       ctx2.fillText(bottomText, canvas.width / 2, canvas.height - 5);
+      ctx2.strokeText(bottomText, canvas.width / 2, canvas.height - 5);
 
       const canvasData = canvas.toDataURL();
       saveCanvasToServer(canvasData);
