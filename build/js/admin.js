@@ -274,7 +274,7 @@ function displayMemeThumbs(data) {
     $('#meme-thumbs-moderate').prepend(`
       <div class='meme-thumb' imageID="${v.date}">
         <div class="reject-button">X</div>
-        <img src="https://dmnmemeresized.s3.amazonaws.com/resized-${v.date}.png" alt="thumb" width="100%"/>
+        <img src="https://dmnmeme.s3.amazonaws.com/${v.date}.png" alt="full" width="100%"/>
       </div>`);
   });
   $('#create-gallery .meme-thumb:not(.builder-meme) img').click(function () {
