@@ -148,7 +148,10 @@ $(document).ready(() => {
   $('#build').click(() => {
     topText = $('#topLineText').val().toUpperCase();
     bottomText = $('#bottomLineText').val().toUpperCase();
-    renderCanvas(topText, bottomText);
+    if (topText && bottomText) {
+      renderCanvas(topText, bottomText);
+      $('#build').css('pointer-events', 'none');
+    }
   });
 
   function saveCanvasToServer(canvas){
