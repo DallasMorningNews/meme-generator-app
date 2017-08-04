@@ -101,6 +101,7 @@
   <!-- <div data-destination="choose-theme" class="nav-button active-nav">Add image</div> -->
 	<div data-destination="upload-meme" class="nav-button active-nav" id="upload-image">Upload image</div>
 	<div data-destination="create-builder" class="nav-button">Create<br/>builder</div>
+	<div data-destination="edit-builder" class="nav-button">Edit<br/>builder</div>
 	<div data-destination="create-gallery" class="nav-button">Create<br/>gallery</div>
 </nav>
 
@@ -128,9 +129,8 @@
        3. Click upload to send it to the generator for future use.<br/>
        4. The 'Session uploads' window will update when the image is available for memes.</p>
 		<form enctype="multipart/form-data" id="upload-form">
-			<input name="name" type="file" id="upload-input"><br/>
+			<input name="name" type="file" id="upload-input" multiple="multiple"><br/>
 			<input type="text" name="tags" placeholder="Searchable keywords" /><br/></br/>
-			<!-- <input type="submit" value="Upload"/> -->
 			<div class="btn int-btn" id="btn-upload-form" data-target="upload-form">Upload</div>
 		</form>
 		<h4>Session uploads</h4>
@@ -173,7 +173,24 @@
     </div>
 	</section>
 
-  <!-- DISPLAY URL -->
+	<!-- EDIT EXISTING BUILDER SECTION -->
+	<section class="controls" id="edit-builder">
+			<h3>Edit a Meme Maker</h3>
+			<p class="subhed">Select an existing meme maker</p>
+			<p class="subhed">Search for additional background images</p>
+      <p>Enter keywords and hit the 'search' button to find images.</p>
+			<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
+			</br/>
+			<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
+			<p class="subhed">Search results</p>
+      <p>Click on an image below to add it to a page.</p>
+			<div class="console search" id="image-thumbs"></div>
+			<p class="subhed">Images selected for page</p>
+      <p class="instructions">Drag images to rearrange.</p>
+			<div class="console selected" id="page-images"></div>
+	</section>
+
+
 
 	<!-- MODERATE MEMES SECTION -->
 	<section class="controls" id="create-gallery">
