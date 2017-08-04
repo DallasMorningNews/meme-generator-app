@@ -9,26 +9,30 @@ Rainbow.defer = true;
 var uploadFormData = new FormData();
 
 // Display the last image uploaded
-function displayLastSubmission(data) {
-  const timer = setInterval(() => {
-    $.get(`https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg`)
-      .done(() => {
-        console.log('DONE image load');
-        $('#upload-console').prepend(`
-          <div class='console-thumb'>
-          <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${data.imageid}.jpg" alt="thumb"/>
-          </div>`);
-        clearInterval(timer);
-      }).fail(() => {
-        console.log('FAILED image load');
-      });
-  }, 1000);
+function displayLastSubmissions(data) {
+  data.forEach((image) => {
+    const timer = setInterval(() => {
+      $.get(`https://dmnmemebaseresized.s3.amazonaws.com/resized-${image}.jpg`)
+        .done(() => {
+          console.log(`${image} loaded.`);
+          $('#upload-console').prepend(`
+            <div class='console-thumb'>
+            <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${image}.jpg" alt="thumb"/>
+            </div>`);
+          clearInterval(timer);
+        }).fail(() => {
+          console.log('FAILED image load');
+        });
+    }, 1000);
+  });
 }
 
 function logFormData(form) {
+  console.log('LOGGING FORM DATA');
   // Display the key/value pairs
   for (const pair of form.entries()) {
-    console.log(`${pair[0]}, ${pair[1]}`);
+    console.log(pair[0]);
+    console.log(pair[1]);
   }
 }
 
@@ -63,7 +67,7 @@ $('#btn-upload-form').click(() => {
       },
       success: (responseObj) => {
         console.log('SUCCESS', responseObj);
-        displayLastSubmission(responseObj);
+        displayLastSubmissions(responseObj);
         $('#upload-form').trigger('reset');
         uploadFormData = new FormData();
       },

@@ -1,6 +1,5 @@
-'use strict';
-
 module.exports = function (app) {
+  // Module requirements
   const AWS = require('aws-sdk');
   const multer = require('multer');
   const multerS3 = require('multer-s3');
@@ -14,11 +13,8 @@ module.exports = function (app) {
   // Create an S3 client
   const s3 = new AWS.S3();
 
-  // Payload for database
-  let imageObj = {};
-
   // Our bucket
-  const bucketName = "dmnmemebase";
+  const bucketName = 'dmnmemebase';
 
   // Multer S3 file upload function
   const upload = multer({
@@ -31,12 +27,11 @@ module.exports = function (app) {
         cb(null, { fieldName: file.originalname });
       },
       contentType: multerS3.AUTO_CONTENT_TYPE,
+      // Give it a new, unique name based on the time
       key: function (req, file, cb) {
-        imageObj = {};
         const now = new Date();
         const timeID = Number(now);
         const newName = `${timeID}.jpg`;
-        imageObj.imageid = timeID;
         cb(null, newName);
       },
     }),
@@ -48,25 +43,27 @@ module.exports = function (app) {
         return cb(new Error('Only jpegs are allowed!'));
       }
       cb(null, true);
-    }
+    },
   });
 
-  app.post('/admin/upload', upload.single('image'), (req, res, next) => {
-    imageObj.tags = req.body.tags;
-    console.log('INCOMING...');
-    console.log(imageObj);
-    req.models.images.create(imageObj, (err) => {
-      if (err) {
-        console.log('ERROR...');
-        console.log(err);
-        // Send error
-        res.send(err);
-      } else {
-        console.log('SUCCESS...');
-        console.log('Database updated successfully');
-        console.log(imageObj);
-        res.send(imageObj);
-      }
+  app.post('/admin/upload', upload.array('image', 20), (req, res) => {
+    // This is what we'll send back to app
+    const returnPayload = [];
+    // For each file sent
+    req.files.forEach((d) => {
+      // Get the file name without teh file type
+      const imageid = d.key.slice(0, -4);
+      // Create an object to update database with
+      d.imageid = imageid;
+      d.tags = req.body.tags
+      // Append this file name to return payload
+      returnPayload.push(imageid);
+      // Update database
+      req.models.images.create(d, (err) => {
+        if (err) { res.send(err); }
+      });
     });
+    // Send payload back to admin
+    res.send(returnPayload);
   });
 };
