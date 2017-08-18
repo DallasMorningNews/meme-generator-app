@@ -933,7 +933,6 @@ section h3 {
   margin-bottom: 0; }
 
 section p {
-  margin-bottom: 30px;
   font-size: 1.2em;
   line-height: 1.3em; }
 
@@ -1064,30 +1063,7 @@ input[type="text"]:focus {
 .subhed {
   font-size: 1.75em !important;
   color: #b5b5b5;
-  margin-bottom: 10px !important; }
-
-.console {
-  margin-bottom: 20px;
-  padding: 20px;
-  background: white;
-  background-color: whitesmoke;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%; }
-
-.console .console-thumb {
-  cursor: pointer;
-  margin: 10px;
-  width: 30%; }
-  @media screen and (max-width: 800px) {
-    .console .console-thumb {
-      width: 50%; } }
-  @media screen and (max-width: 500px) {
-    .console .console-thumb {
-      width: 100%; } }
-
-.console-thumb img {
-  width: 100%; }
+  margin: 35px 0px 10px !important; }
 
 .url-box {
   margin-top: 20px;
@@ -1216,25 +1192,25 @@ input[type=submit] {
   margin-top: 25px;
   cursor: pointer; }
 
-#filter-builder {
+#filter-builder, #edit-builder {
   display: flex;
   flex-wrap: wrap; }
 
 .base-thumb {
   width: 30%; }
 
-#filter-builder .builder {
-  width: 30%;
+#filter-builder .builder, #edit-builder .builder {
+  width: 22%;
   padding: 10px;
   margin-bottom: 25px;
   margin-right: 25px;
   background: whitesmoke; }
   @media screen and (max-width: 1010px) {
-    #filter-builder .builder {
-      width: 45%; } }
+    #filter-builder .builder, #edit-builder .builder {
+      width: 29%; } }
   @media screen and (max-width: 800px) {
-    #filter-builder .builder {
-      width: 100%; } }
+    #filter-builder .builder, #edit-builder .builder {
+      width: 45%; } }
 
 .builder {
   cursor: pointer;
@@ -1290,6 +1266,18 @@ canvas {
 #gallery-code {
   font-family: 'Droid Sans Mono', monospace; }
 
+.console {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  background-color: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.console-thumb img {
+  width: 100%; }
+
 .console .console-thumb {
   cursor: pointer;
   margin: 10px;
@@ -1312,13 +1300,13 @@ canvas {
 #upload-console .console-thumb, .search .console-thumb, .selected .console-thumb {
   max-width: 200px; }
 
+#upload-form {
+  margin-top: 30px; }
+
 #gallery-code pre {
   width: 100%; }
 
-#meme-thumbs-moderate div {
-  margin-bottom: 20px; }
-
-#meme-thumbs-moderate div {
+.console div {
   margin-bottom: 20px; }
 
 #meme-thumbs-publish .reject-button {

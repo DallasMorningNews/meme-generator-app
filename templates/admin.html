@@ -46,17 +46,6 @@
 		adSlot0.setTargeting("position", "x01");
 		adSlot0.addService(googletag.pubads());
 
-		/*
-		var adSlot1 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionMiddle");
-		adSlot1.setTargeting("position", "x02");
-		adSlot1.addService(googletag.pubads());
-		*/
-
-		/*
-		var adSlot2 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionBottom");
-		adSlot2.setTargeting("position", "x03");
-		adSlot2.addService(googletag.pubads());
-		*/
 	} else {
 		var DFP_sitepage = "DMN/interactives";
 		DFPSlotSizes = [728, 90]
@@ -64,17 +53,6 @@
 		adSlot0.setTargeting("position", "Top");
 		adSlot0.addService(googletag.pubads());
 
-		/*
-		var adSlot1 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionMiddle");
-		adSlot1.setTargeting("position", "Top");
-		adSlot1.addService(googletag.pubads());
-		*/
-
-		/*
-		var adSlot2 = googletag.defineSlot('/' + DFP_networkId + '/' + DFP_sitepage, DFPSlotSizes, "dfpAdPositionBottom");
-		adSlot2.setTargeting("position", "Top");
-		adSlot2.addService(googletag.pubads());
-		*/
 	}
 </script>
 
@@ -84,15 +62,7 @@
 	googletag.enableServices();
 </script>
 
-
-
-
 {%endblock%} {%block content%}
-<!-- <section id="content-header">
-	<img src="images/base-images/thumbs/1476823129736.jpg" alt="#" />
-	<p class="cutline">Cutline goes here. You can remove this tag if you don't feel the lead image needs a cutline</p>
-</section> -->
-<!-- end contentHeader -->
 
 <nav class="sideNav">
 	<div class="name-tile">
@@ -101,7 +71,7 @@
   <!-- <div data-destination="choose-theme" class="nav-button active-nav">Add image</div> -->
 	<div data-destination="upload-meme" class="nav-button active-nav" id="upload-image">Upload image</div>
 	<div data-destination="create-builder" class="nav-button">Create<br/>builder</div>
-	<div data-destination="edit-builder" class="nav-button">Edit<br/>builder</div>
+	<div data-destination="edit-builders" class="nav-button">Edit<br/>builder</div>
 	<div data-destination="create-gallery" class="nav-button">Create<br/>gallery</div>
 </nav>
 
@@ -114,11 +84,6 @@
       <img src="../images/traditional-meme.jpg"/>
       Traditional white type with black border placed over a photo you select.
     </div>
-    <!-- <div class="theme" data-theme="traditional">
-      Graffiti
-      <img src="../images/graffiti-meme.jpg"/>
-      Paint multi-colored graffiti over a photo you select.
-    </div> -->
   </section>
 
 	<!-- UPLOAD IMAGE SECTION -->
@@ -139,18 +104,25 @@
 
 	<!-- CREATE PAGE/BUILDER SECTION -->
 	<section class="controls" id="create-builder">
-			<h3>Create a Meme Maker</h3>
-			<p class="subhed">Search for background images</p>
-        <p>Enter keywords and hit the 'search' button to find images.</p>
-				<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
-				</br/>
-				<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
-			<p class="subhed">Search results</p>
-      <p>Click on an image below to add it to a page.</p>
-			<div class="console search" id="image-thumbs"></div>
-			<p class="subhed">Selected images for page</p>
-      <p class="instructions">Drag images to rearrange.</p>
-			<div class="console selected" id="page-images"></div>
+		<h3>Create a Meme Maker</h3>
+    <p>1. Search for background images using keywords.</br>
+       2. Click on image thumbnails to add them to your page.</br>
+       3. Fill out the form making sure to fill out teh required fields.<br/>
+       4. Click "Create Meme Maker".<br/>
+       5. Copy generated url. This is the link to your Meme Maker.<br/>
+       6. Be sure to build the first Meme Maker, it will be the default social image.</br/>
+    </p>
+		<p class="subhed">Search for background images</p>
+      <p>Enter keywords and hit the 'search' button to find images.</p>
+			<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
+			</br/>
+			<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
+		<p class="subhed">Search results</p>
+    <p>Click on an image below to add it to a page.</p>
+		<div class="console search" id="image-thumbs"></div>
+		<p class="subhed">Selected images for page</p>
+    <p class="instructions">Drag images to rearrange.</p>
+		<div class="console selected" id="page-images"></div>
 		<div class="component" id="builder-inputs">
 			<p class="subhed">Build a Meme Maker</p>
       <p class="instructions">Fill out the required fields.</p>
@@ -174,33 +146,39 @@
 	</section>
 
 	<!-- EDIT EXISTING BUILDER SECTION -->
-	<section class="controls" id="edit-builder">
-			<h3>Edit a Meme Maker</h3>
-			<p class="subhed">Select an existing meme maker</p>
-			<p class="subhed">Search for additional background images</p>
+	<section class="controls" id="edit-builders">
+		<h3>Edit a Meme Maker</h3>
+    <p>1. Find your Meme Maker.</br>
+       2. Add new, or delete existing background images.</br>
+       3. Update Meme Maker<br/>
+    </p>
+    <p class="subhed">Select a current meme maker.</p>
+		<div class="btn int-btn" id="btn-filter-builder" data-target="filter-builder">By pages</div>
+    <div id="edit-builder"></div>
+    <h4>Current background images</h4>
+    <div class="console moderate" id="background-thumbs-moderate"></div>
+    <p class="subhed">Search for additional background images</p>
       <p>Enter keywords and hit the 'search' button to find images.</p>
 			<input type="text" name="search-tags" placeholder="Searchable keywords" /></br>
 			</br/>
-			<div class="btn int-btn" id="btn-create-search" data-target="search-images">Search</div>
-			<p class="subhed">Search results</p>
-      <p>Click on an image below to add it to a page.</p>
-			<div class="console search" id="image-thumbs"></div>
-			<p class="subhed">Images selected for page</p>
-      <p class="instructions">Drag images to rearrange.</p>
-			<div class="console selected" id="page-images"></div>
+			<div class="btn int-btn" id="btn-edit-search" data-target="search-images">Search</div>
+		<p class="subhed">Search results</p>
+    <p>Click on an image below to add it to a page.</p>
+		<div class="console search" id="edit-thumbs"></div>
+    <div class="btn int-btn" id="btn-update-builder" data-target="update-builder">Update builder</div>
 	</section>
-
-
 
 	<!-- MODERATE MEMES SECTION -->
 	<section class="controls" id="create-gallery">
 		<h3>Create a gallery of submitted memes</h3>
+    <p>1. Find your Meme Maker.</br>
+       2. Delete inappropriate memes.</br>
+       3. Select memes you'd like to publish.</br>
+       4. Click the "Publish" button.<br/>
+       5. Paste the generated code into Serif.<br/>
+    </p>
+    <p class="subhed">Select a current meme maker.</p>
 		<div class="btn int-btn" id="btn-filter-builder" data-target="filter-builder">By pages</div>
-		<!-- <div class="btn int-btn optional" id="btn-filter-date" data-target="filter-date">By date</div>
-		<div class="btn int-btn optional" id="btn-filter-tags" data-target="filter-tags">By tags</div>
-		<div class="btn int-btn optional" id="btn-filter-text" data-target="filter-word">By word</div>
-    <div class="btn int-btn optional" id="btn-filter-text" data-target="filter-author">By author</div>
-    <div class="btn int-btn optional" id="btn-filter-text" data-target="filter-desk">By desk</div> -->
     <div id="filter-builder"></div>
     <h4>Submitted memes</h4>
 		<div class="console moderate" id="meme-thumbs-moderate"></div>
