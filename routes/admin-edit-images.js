@@ -5,12 +5,12 @@ module.exports = (app) => {
   app.post('/admin/edit/backgrounds/byBuilder/:builderID', (req, res) => {
     const builderID = req.params.builderID;
     const data = req.body;
-    console.log('DATA', data);
-    console.log('STRINGIFIED', data.toString());
+    // console.log('DATA', data);
+    // console.log('STRINGIFIED', data.toString());
     req.models.builders.find({ id: builderID }).run((err, results) => {
-      console.log('results BEFORE', results[0].images);
+      // console.log('results BEFORE', results[0].images);
       results[0].images = data.toString();
-      console.log('results AFTER', results[0].images);
+      // console.log('results AFTER', results[0].images);
       results[0].save((err) => {
         if (err) { res.send(err); }
         res.send('updated');
