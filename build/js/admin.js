@@ -412,7 +412,8 @@ function displayBuildersToEdit(builders, targetID) {
   });
 }
 
-function buildMemeBackgroundsPreview(data){
+
+function buildMemeBackgroundsPreview(data) {
   $('#background-thumbs-moderate').empty();
   $.each(data, (k, v) => {
     console.log(v);
@@ -424,10 +425,13 @@ function buildMemeBackgroundsPreview(data){
   });
 }
 
+
 function displayEditMemeImages(backgrounds) {
   const imgs = backgrounds[0].images.split(',');
   buildMemeBackgroundsPreview(imgs);
 }
+
+var editBuilderID;
 
 // Click on any of the filter option buttons
 $('#edit-builders .btn').click(function generic() {
@@ -451,12 +455,13 @@ $('#edit-builders .btn').click(function generic() {
             $('#edit-builders .builder').click(function () {
               // $('.publish').empty();
               $(this).siblings().remove();
-              const builderID = $(this).data('builderid');
-              console.log(builderID);
+              editBuilderID = $(this).data('builderid');
+              console.log(editBuilderID);
               $.ajax({
-                url: `/meme-generator/admin/search/backgrounds/byBuilder/${builderID}`,
+                url: `/meme-generator/admin/search/backgrounds/byBuilder/${editBuilderID}`,
                 type: 'get',
                 success: (backgrounds) => {
+                  console.log('BACKGROUNDS', backgrounds[0].images);
                   displayEditMemeImages(backgrounds);
                 },
                 error: (err) => {
@@ -473,6 +478,28 @@ $('#edit-builders .btn').click(function generic() {
       console.log('There was an error in the filter switch');
     }
   }
+});
+
+$('#btn-update-builder').click(() => {
+  const newBackgroundImages = [];
+  $('#background-thumbs-moderate .meme-thumb').each(function () {
+    newBackgroundImages.push($(this).attr('imageid'));
+  });
+  console.log(editBuilderID, JSON.stringify(newBackgroundImages));
+  $.ajax({
+    url: `/meme-generator/admin/edit/backgrounds/byBuilder/${editBuilderID}`,
+    type: 'post',
+    data: JSON.stringify(newBackgroundImages),
+    processData: false,
+    contentType: 'application/json; charset=utf-8',
+    success: (response) => {
+      console.log(response);
+      $('#edit-thumbs').empty();
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
 });
 
 

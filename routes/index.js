@@ -7,6 +7,7 @@ module.exports = (app) => {
   require('./admin-home')(app);
   require('./admin-upload-image-s3')(app);
   require('./admin-search-images')(app);
+  require('./admin-edit-images')(app);
   require('./admin-create-builder')(app);
   require('./admin-search-builders')(app);
   require('./admin-search-memes')(app);
