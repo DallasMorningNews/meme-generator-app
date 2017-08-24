@@ -3,7 +3,7 @@ set -e
 
 ### Configuration ###
 
-SERVER=ubuntu@apps.dallasnews.com
+SERVER=ubuntu@52.5.68.162
 APP_DIR=/var/www/meme-generator
 KEYFILE=~/.ssh/dmnapps.pem
 REMOTE_SCRIPT_PATH=/tmp/deploy-meme-generator.sh

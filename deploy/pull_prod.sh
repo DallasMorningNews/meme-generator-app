@@ -3,7 +3,7 @@ set -e
 
 ### Configuration ###
 
-SERVER=ubuntu@apps.dallasnews.com
+SERVER=ubuntu@52.5.68.162
 KEYFILE=~/.ssh/dmnapps.pem
 
 ### Library ###
