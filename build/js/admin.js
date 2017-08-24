@@ -1,9 +1,11 @@
 /* global $:true,document:true,_:true*/
 Rainbow.defer = true;
 
-// //////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 //    I. UPLOAD IMAGES
-// //////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 // Var because I can't figure out how to use let or const here...
 var uploadFormData = new FormData();
@@ -77,19 +79,19 @@ $('#btn-upload-form').click(() => {
   }
 });
 
-
-
-
-
-
-
 $('#upload-form').on('submit', (event) => {
   event.preventDefault();
 });
 
-// //////////////////////////////////////////////
+
+
+
+
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 //    II. CREATE MEME BUILDER
-// //////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 // SEARCH FOR BASE IMAGES
 $('#btn-create-search').on('click', function generic(event) {
@@ -241,14 +243,11 @@ $('#btn-create-builder').click((event) => {
 });
 
 
-
-
-
-
-
-// //////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 //    DEAL WITH THUMBS
-// //////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 // Images AS JPGs!
 function displayImageThumbs(data) {
   $('#image-thumbs').empty();
@@ -293,7 +292,6 @@ function displayMemeThumbs(data) {
   });
 
   // REJECT MEMES WITH INITIAL WARNING
-  let confirmed = false;
   function deleteMeme(memeID) {
     console.log('Deleting meme', memeID);
     $.ajax({
@@ -306,8 +304,9 @@ function displayMemeThumbs(data) {
     });
   }
 
+  let confirmed = false;
   // Reject the memes
-  $('.reject-button').click(function () {
+  $('.meme-thumb .reject-button').click(function () {
     // if they want to delete it
     if (confirmed) {
       deleteMeme($(this).parent().attr('imageid'));
@@ -325,11 +324,196 @@ function displayMemeThumbs(data) {
 
 
 
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+//    III EDIT BUILDER
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
+// DISPLAY THE RESULTING IMAGES
+function displayEditThumbs(data) {
+  $('#edit-thumbs').empty();
+  $.each(data, (k, v) => {
+    $('#edit-thumbs').prepend(`
+      <div class='console-thumb'>
+        <img imageID="${v.imageid}" src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${v.imageid}.jpg" alt="thumb"/>
+      </div>`);
+  });
+  $('#edit-thumbs .console-thumb').click(function () {
+    const thisID = $(this).find('img').attr('imageid');
+    console.log('THISID', thisID);
+    // const thisParent = $(this).parent().attr('id');
+    // console.log('THISPARENT', thisParent)
+    $('#background-thumbs-moderate').append(`
+      <div class='meme-thumb' imageID="${thisID}">
+        <div class="reject-button">X</div>
+        <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${thisID}.jpg" alt="full" width="100%" alt="thumb"/>
+      </div>`);
+    $('#background-thumbs-moderate .reject-button').on('click', function () {
+      // if they want to delete it
+      let confirmed = false;
+      console.log('click CONFIRMED', confirmed);
+      if (confirmed) {
+        $(this).parent().remove();
+      } else {
+        // Sets confirmed to true or false based on response
+        confirmed = confirm('Are you sure you want to remove this image from the meme builder? ');
+        console.log('CONFIRMED', confirmed)
+        if (confirmed) {
+          $(this).parent().remove();
+        }
+      }
+    });
+    $(this).remove();
+  });
+}
+
+// SEARCH FOR BASE IMAGES
+$('#btn-edit-search').on('click', function generic(event) {
+  event.preventDefault();
+  const form = $(this);
+  let formData = {};
+  formData.tags = $("#edit-builders input[name='search-tags']").val().toLowerCase();
+  console.log('tags:', $("#edit-builders input[name='search-tags']").val().toLowerCase());
+  $.ajax({
+    url: '/meme-generator/admin/search',
+    type: 'POST',
+    data: formData,
+    success: (responseObj) => {
+      console.log('Response:');
+      console.log(responseObj);
+      displayEditThumbs(responseObj);
+      formData = {};
+      form.trigger('reset');
+    },
+  });
+});
+
+// DISPLAY THE BUILDERS YOU WANT TO EDIT
+function displayBuildersToEdit(builders, targetID) {
+  console.log('displayBuildersToEdit');
+  return new Promise((resolve, reject) => {
+    let count = builders.length;
+    console.log(count);
+    $(`#${targetID}`).empty();
+    for (const builder of builders) {
+      console.log(builder);
+      const html = `
+      <div class='builder' data-builderID='${builder.id}'>
+        <img class='builder-meme' src='https://dmnmemeresized.s3.amazonaws.com/resized-${builder.firstMeme[0].date}.png'/>
+        <span class='builder-head'>${builder.head}</span>
+        <span class='builder-intro'>${builder.intro}</span>
+        by <span class='builder-author'>${builder.author}</span>
+        for <span class='builder-desk'>${builder.desk}</span>
+      </div>
+      `;
+      $(`#${targetID}`).prepend(html);
+      count -= 1;
+      if (count === 0) {
+        resolve(true);
+      }
+    }
+  });
+}
 
 
-// //////////////////////////////////////////////
-//    III CREATE GALLERY PAGE
-// //////////////////////////////////////////////
+function buildMemeBackgroundsPreview(data) {
+  $('#background-thumbs-moderate').empty();
+  $.each(data, (k, v) => {
+    console.log(v);
+    $('#background-thumbs-moderate').prepend(`
+      <div class='meme-thumb' imageID="${v}">
+        <div class="reject-button">X</div>
+        <img src="https://dmnmemebaseresized.s3.amazonaws.com/resized-${v}.jpg" alt="full" width="100%" alt="thumb"/>
+      </div>`);
+  });
+}
+
+
+function displayEditMemeImages(backgrounds) {
+  const imgs = backgrounds[0].images.split(',');
+  buildMemeBackgroundsPreview(imgs);
+}
+
+var editBuilderID;
+
+// Click on any of the filter option buttons
+$('#edit-builders .btn').click(function generic() {
+  // Get the target from the data attr
+  const targetID = $(this).data('target');
+  console.log(targetID);
+
+  // Depending on the button you clicked
+  switch (targetID) {
+  //   // Filter by builder instructions
+    case 'filter-builder': {
+      // $('#filter-builder').empty();
+      console.log('SEND AJAX');
+      // PROMISE WORK TO BUILD AFTER QUERIES
+      $.ajax({
+        url: '/meme-generator/admin/search/memes/first',
+        type: 'get',
+        success: (builders) => {
+          console.log(builders);
+          displayBuildersToEdit(builders, 'edit-builder').then(() => {
+            $('#edit-builders .builder').click(function () {
+              // $('.publish').empty();
+              $(this).siblings().remove();
+              editBuilderID = $(this).data('builderid');
+              console.log(editBuilderID);
+              $.ajax({
+                url: `/meme-generator/admin/search/backgrounds/byBuilder/${editBuilderID}`,
+                type: 'get',
+                success: (backgrounds) => {
+                  console.log('BACKGROUNDS', backgrounds[0].images);
+                  displayEditMemeImages(backgrounds);
+                },
+                error: (err) => {
+                  console.log(err);
+                },
+              });
+            });
+          });
+        },
+      });
+      break;
+    }
+    default: {
+      console.log('There was an error in the filter switch');
+    }
+  }
+});
+
+$('#btn-update-builder').click(() => {
+  const newBackgroundImages = [];
+  $('#background-thumbs-moderate .meme-thumb').each(function () {
+    newBackgroundImages.push($(this).attr('imageid'));
+  });
+  console.log(editBuilderID, JSON.stringify(newBackgroundImages));
+  $.ajax({
+    url: `/meme-generator/admin/edit/backgrounds/byBuilder/${editBuilderID}`,
+    type: 'post',
+    data: JSON.stringify(newBackgroundImages),
+    processData: false,
+    contentType: 'application/json; charset=utf-8',
+    success: (response) => {
+      console.log(response);
+      $('#edit-thumbs').empty();
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
+});
+
+
+
+
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+//    IV CREATE GALLERY PAGE
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 function countMemes() {
   console.log('countMemes');
@@ -350,7 +534,7 @@ function countMemes() {
   });
 }
 
-function displayBuilders(builders) {
+function displayBuilders(builders, targetID) {
   console.log('displayBuilders');
   return new Promise((resolve, reject) => {
     let count = builders.length;
@@ -367,7 +551,7 @@ function displayBuilders(builders) {
         for <span class='builder-desk'>${builder.desk}</span>
       </div>
       `;
-      $('#filter-builder').prepend(html);
+      $(`#${targetID}`).prepend(html);
       count -= 1;
       if (count === 0) {
         resolve(true);
@@ -394,7 +578,7 @@ $('#create-gallery .btn').click(function generic() {
         url: '/meme-generator/admin/search/memes/first',
         type: 'get',
         success: (builders) => {
-          displayBuilders(builders).then(() => {
+          displayBuilders(builders, 'filter-builder').then(() => {
             $('#filter-builder .builder').click(function () {
               $('.publish').empty();
               const builderID = $(this).data('builderid');
@@ -444,9 +628,11 @@ $('#create-gallery .btn').click(function generic() {
 
 
 
-// //////////////////////////////////////
-//    IV Publish gallery page
-// //////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+//    V PUBLISH GALLERY PAGE
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 $('#btn-publish').click(() => {
   event.preventDefault();
   console.log('Publishing a gallery page');
@@ -477,16 +663,13 @@ $('#btn-publish').click(() => {
 
 
 
-
-// //////////////////////////////////////
-// //////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 //    DOCUMENT READY
-// //////////////////////////////////////
-// //////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 $(document).ready(() => {
-
-  console.log('Version 4/21 14:15');
 
   let currentDestination = 'upload-meme';
   $(`#${currentDestination}`).show();
@@ -501,7 +684,6 @@ $(document).ready(() => {
     $('.nav-button').removeClass('active-nav');
     $(this).addClass('active-nav');
   });
-  //
   // //////////////////////////////////////
   //    MAKE CONSOLE FOR PUBLISH SORTABLE
   // //////////////////////////////////////
@@ -512,13 +694,5 @@ $(document).ready(() => {
     revert: true,
   });
 
-  // $('pre code').each((i, block) => {
-  //   hljs.highlightBlock(block);
-  // });
-
-  // $('.theme').click(() => {
-  //   $('.sideNav #upload-image').slideDown();
-  // });
-
-    $('.printShare').hide();
+  $('.printShare').hide();
 });

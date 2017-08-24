@@ -54,6 +54,14 @@ module.exports = (app) => {
       res.json(results);
     });
   })
+  // Search for meme backgrounds by builder selected
+  .get('/admin/search/backgrounds/byBuilder/:builderID', (req, res) => {
+    const builderID = req.params.builderID;
+    req.models.builders.find({ id: builderID }).run((err, results) => {
+      if (err) { console.log(err); }
+      res.json(results);
+    });
+  })
   // Get all tags from all builders
   .get('/admin/search/memes/tags', (req, res) => {
     req.models.memes.find({}).run((err, results) => {
