@@ -51,6 +51,8 @@ app.use(passport.session());
 // App connects to mysql database using credentials set in .env file
 // process.env object is created by the dotenv load line above
 
+console.log(`${process.env.DB_USER}`);
+
 app.use(orm.express(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`, {
   define: function (db, models, next) {
     // Holds the raw images
